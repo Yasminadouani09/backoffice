@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
@@ -6,9 +6,32 @@ import { useNavigate } from "react-router-dom";
 
 export default function AddCourse() {
   const navigate = useNavigate();
+  const [preview, setpreview] = useState(null);
   return (
     <div>
       <div className="px-5 py-3">
+        <div className="d-flex justify-content-center">
+          <Form.Control
+            className="w-25 "
+            type="image"
+            style={{ top: "50%" }}
+            src={
+              preview
+                ? URL.createObjectURL(preview)
+                : "https://auphonic.com/media/blog/resumable_upload.png"
+            }
+            onClick={() => {
+              document.getElementById("myfile").click();
+            }}
+          />
+        </div>
+        <Form.Control
+          className="w-75"
+          type="file"
+          id="myfile"
+          style={{ display: "none" }}
+          onChange={(e) => setpreview(e.target.files[0])}
+        />
         <ProgressBar now={0} />
         <div className="py-5">
           <Card className="py-3">
@@ -17,27 +40,7 @@ export default function AddCourse() {
                 <h3 className="text-warning">Add a new course</h3>
                 <Form.Label className="py-3 ">Course cover</Form.Label>
                 <div className="d-flex justify-content-center">
-                  <Card style={{ width: "50rem", height: "20rem" }}>
-                    <div className="d-flex justify-content-center">
-                      <Form.Control
-                        className="w-25 "
-                        type="image"
-                        style={{ top: "50%" }}
-                        src="https://auphonic.com/media/blog/resumable_upload.png"
-                        placeholder="please enter the course name"
-                        onClick={() => {
-                          document.getElementById("myfile").click();
-                        }}
-                      />
-                    </div>
-                    <Form.Control
-                      className="w-75"
-                      type="file"
-                      id="myfile"
-                      style={{ display: "none" }}
-                      placeholder="please enter the course name"
-                    />
-                  </Card>
+                  <Card style={{ width: "50rem", height: "20rem" }}></Card>
                 </div>
                 <div className="py-3">
                   <button className="btn btn-outline-primary"> Upload</button>
