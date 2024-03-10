@@ -6,14 +6,29 @@ const cors = require("cors");
 const formationRouter= require ('./routes/formation.router.js')
 app.use(express.json());
 app.use(cors({ origin: "http://localhost:3001" }));
-
-
-
-app.use("/api/v1/course", formationRouter)
-
+app.use("/api/v1", formationRouter)
 app.listen(port, () => {
   console.log(`listing to http://localhost:${port}`);
+
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // app.get('/Cards')

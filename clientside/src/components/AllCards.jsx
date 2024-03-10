@@ -10,7 +10,7 @@ function AllCards(props) {
 
   const getData = async () => {
     try {
-      let response = await axios.get("http://localhost:5000/api/v1/course");
+      let response = await axios.get("http://localhost:3100/api/v1");
       setState({ data: response.data });
       console.log("this is data from backend", response.data);
       // console.log("this is data"+ response.data); manajmch najma3 chaine m3a array
@@ -19,6 +19,8 @@ function AllCards(props) {
       console.log("Error getting cards");
     }
   };
+
+
 
   useEffect(() => {
     if (props.searchValue.length) {
@@ -41,6 +43,10 @@ function AllCards(props) {
     }
   };
 
+
+
+
+  
   return (
     <div style={{ backgroundColor: "#F4FAFB" }}>
       <div className="d-flex justify-content-center py-5 align-items-center flex-wrap">

@@ -1,14 +1,13 @@
 const formationRouter = require("express").Router()
 const {
-  allformation,
+ findAll,
   findOne,
   // search,
   // deleteCard,
 } = require("../controller/Course.controller");
 
 let Cards=require('../data.json')
-
-formationRouter.get('/',allformation)
+formationRouter.get('/',findAll)
  formationRouter.get('/:id',findOne)
 // formationRouter.delete("/:id", deleteCard);
 // // formationRouter.put('/:id')

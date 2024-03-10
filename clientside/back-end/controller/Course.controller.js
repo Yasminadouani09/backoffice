@@ -1,7 +1,7 @@
 let Cards = require('../data.json')
-const{Course}=require('../model/models')
+const {Course} =require('../model/models')
 
-const allformation = async (request, response) => {
+const findAll = async (request, response) => {
   try {
     const result = await Course.find()
     response.send(result);
@@ -27,21 +27,6 @@ const findOne = async (request, response) => {
 
 
 
-
-
-
-
-
-
-
-// const oneformation =(request,response)=>{
-//   const {id}=request.params;
-//   let myCard = Cards.find((elem)=>elem.id===+id)
-//   if (myCard) response.send(myCard);
-//   else response.status(400).send("formation not found");
-// }
-
-
 const search = (request, response) => {
     const { text } = request.body;
     console.log(text, "this is a search")
@@ -54,7 +39,8 @@ const search = (request, response) => {
         console.log(filtred)
   response.status(200).send(filtred);
 };
-    
+  
+
 const deleteCard = (req, res) => {
   let id = +req.params.id;
   console.log(id, "my id sent from params");
@@ -71,4 +57,4 @@ console.log(newCard)
 
 
 
-module.exports = { allformation ,findOne};
+module.exports = { findAll ,findOne};
