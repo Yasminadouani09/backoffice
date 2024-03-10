@@ -10,7 +10,7 @@ function AllCards(props) {
 
   const getData = async () => {
     try {
-      let response = await axios.get("http://localhost:3100/api/v1/course");
+      let response = await axios.get("http://localhost:5000/api/v1/course");
       setState({ data: response.data });
       console.log("this is data from backend", response.data);
       // console.log("this is data"+ response.data); manajmch najma3 chaine m3a array
