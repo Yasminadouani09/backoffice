@@ -1,6 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import { dataCourses } from './data';
 import {dataPrograms} from './Forfaits'
+import { dataTeachers } from './TEACHERS';
 
 
 // initialize Prisma Client
@@ -14,7 +15,9 @@ async function main() {
   const programs = await prisma.program.createMany({
     data: dataPrograms,
   });
-  
+  const teachers = await prisma.teacher.createMany({
+    data: dataTeachers,
+  });
 
   console.log('seeded');
 }
