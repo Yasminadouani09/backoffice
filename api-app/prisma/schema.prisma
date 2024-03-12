@@ -14,16 +14,24 @@ datasource db {
 }
 
 model Users {
-  id Int @id @default(autoincrement())
+  id       Int     @id @default(autoincrement())
+  name     String
+  about    String? @db.LongText
+  email    String
+  imageURL String  @db.LongText
+  password Float
+  phone    String
+  adress   String
 }
-model Teacher {
-  id          Int     @id @default(autoincrement())
-  name       String
-  imageURL    String  @db.LongText
-  specialty String
-  about   String    
 
+model Teacher {
+  id        Int    @id @default(autoincrement())
+  name      String
+  imageURL  String @db.LongText
+  specialty String
+  about     String
 }
+
 model Course {
   id          Int     @id @default(autoincrement())
   title       String
