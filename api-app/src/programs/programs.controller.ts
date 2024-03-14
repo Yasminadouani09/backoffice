@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
 import { ProgramsService } from './programs.service';
 import { CreateProgramDto } from './dto/create-program.dto';
 import { UpdateProgramDto } from './dto/update-program.dto';
@@ -12,7 +12,7 @@ export class ProgramsController {
   create(@Body() createProgramDto: CreateProgramDto) {
     return this.programsService.create(createProgramDto);
   }
-
+  @UseGuards()
   @Get()
   findAll() {
     return this.programsService.findAll();

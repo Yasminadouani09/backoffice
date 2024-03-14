@@ -1,32 +1,30 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Request } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { CreateAuthDto, Logindto } from './dto/create-auth.dto';
+import { CreateAuthDto, LoginDto } from './dto/create-auth.dto';
 import { UpdateAuthDto } from './dto/update-auth.dto';
 import { ApiSecurity, ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from './jwt-auth.guard';
-// import { CurrentUser } from './decorator/current-user';
-@ApiTags('Auth')
+import { CurrentUser } from './decorator/current-user';
+@ApiTags('AUTH')
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  @Post('login')
-  login(@Body() dto: Logindto) {
+  @Post()
+  login(@Body() dto: LoginDto) {
     return this.authService.login(dto);
   }
-  // @ApiSecurity('apiKey') // for swagger
-  // @UseGuards(JwtAuthGuard) // the get don't work without token
-  // @Get('me')
-  // async findMe(@Request() req, @CurrentUser() user) {
-  //   // get all oject of request
-  //   console.log(user);
 
-  //   return await this.authService.getMyInfo(
-  //     req.get('Authorization').replace('Bearer ', ''),
-  //   );
-  // }
-
-  // create(@Body() dto: Logindto) {}
+  @ApiSecurity('apiKey') // for swagger
+  @UseGuards(JwtAuthGuard) // the get don't work without token
+  @Get('me')
+  async findMe(@Request() req, @CurrentUser() user) {
+    // get all oject of request
+    console.log(user);
+    return await this.authService.getMyInfo(
+      req.get('Authorization').replace('Bearer ', ''),
+    );
+  }
 
   // @Get()
   // findAll() {

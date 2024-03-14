@@ -15,10 +15,10 @@ export default function Router() {
         <Routes>
           <Route>
             <Route path="/" element={<App />}>
-              <Route path="/" element={<Home />}>
-                <Route path=":id" element={<CourseDetails/>} />
-                <Route path=":id" element={<ProgramDetails/>} />
-              </Route>
+              <Route index element={<Home />}/>
+              <Route path=":id" element={<CourseDetails/>} />
+              <Route path=":id" element={<ProgramDetails/>} />
+              
             </Route>
             <Route path="*" element={<NotFound />} />
           </Route>

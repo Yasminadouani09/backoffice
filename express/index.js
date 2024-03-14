@@ -3,10 +3,10 @@ require ('dotenv').config()
 const app = express();
 const port =  3100 ;
 const cors = require("cors");
-const formationRouter= require ('./routes/formation.router.js')
+const formRouter= require ('./routes/Form.router.js')
 app.use(express.json());
 app.use(cors({ origin: "http://localhost:3001" }));
-app.use("/api/v1", formationRouter)
+app.use("/api/v1", formRouter)
 app.listen(port, () => {
   console.log(`listing to http://localhost:${port}`);
 

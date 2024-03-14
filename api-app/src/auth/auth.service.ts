@@ -1,20 +1,19 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { CreateAuthDto, Logindto } from './dto/create-auth.dto';
+import { CreateAuthDto, LoginDto } from './dto/create-auth.dto';
 import { UpdateAuthDto } from './dto/update-auth.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
+import * as bcrypt from 'bcrypt'
 import { JwtService } from '@nestjs/jwt';
-import { UsersService } from 'src/users/users.service';
-import * as bcrypt from 'bcrypt';
-
 @Injectable()
 export class AuthService {
   constructor(
     private readonly prisma: PrismaService,
-    private jwtService: JwtService,
+    private readonly jwtService: JwtService,
   ) {}
-
-  async login(dto: Logindto) {
-    const user = await this.prisma.user.findUnique({where:{
+  async login(dto: LoginDto) {
+    // 'This action adds a new auth'
+    const user = await this.prisma.user.findUnique({
+      where: {
         email: dto.email,
       },
     });
@@ -23,33 +22,16 @@ export class AuthService {
     }
     const { password, ...rest } = user;
     if (await bcrypt.compare(dto.password, password)) {
-      const auth = this.jwtService.sign(rest)
-      return auth;
+      const token = this.jwtService.sign(rest);
+      return token;
     } else {
       throw new HttpException('invalid password', HttpStatus.BAD_REQUEST);
     }
   }
-
-  // async getMyInfo(token:string){
-  //   const myInfo=this.jwtService.decode(token);
-  //   return myInfo
-  // }
-
-    }
- 
-// }
-
-
-
-
-
-
-
-
-
-  // create(createAuthDto: CreateAuthDto) {
-  //   return 'This action adds a new auth';
-  // }
+  async getMyInfo(token: string) {
+    const myInfo = this.jwtService.decode(token);
+    return myInfo;
+  }
 
   // findAll() {
   //   return `This action returns all auth`;
@@ -66,3 +48,4 @@ export class AuthService {
   // remove(id: number) {
   //   return `This action removes a #${id} auth`;
   // }
+}

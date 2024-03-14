@@ -5,24 +5,23 @@ import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
-  constructor(private readonly prisma: PrismaService) {
-    super({
-      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-      ignoreExpiration: false,
-      secretOrKey: 'sfectoria',
-    });
-  }
-
-  async validate(payload: any) {
-    const user = await this.prisma.users.findUnique({
-      where: {
-        email: payload.email,
-      },
-    });
-    if (!user) {
-      throw new HttpException('invalid token', HttpStatus.UNAUTHORIZED);
-    } else {
-      return user;
+    constructor(private readonly prisma: PrismaService) {
+      super({
+        jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+        ignoreExpiration: false,
+        secretOrKey: 'LMS learning and management system',
+      });
     }
-  }
+    async validate(payload: any) {
+        const user = await this.prisma.user.findUnique({
+          where: {
+            email: payload.email,
+          },
+        });
+        if (!user) {
+          throw new HttpException('invalid token', HttpStatus.UNAUTHORIZED);
+        } else {
+          return user;
+        }
+}
 }
