@@ -23,14 +23,15 @@ model User {
   address String?
   occupation String?
 }
-model Teacher {
-  id          Int     @id @default(autoincrement())
-  name       String
-  imageURL    String  @db.LongText
-  specialty String
-  about   String    
 
+model Teacher {
+  id        Int    @id @default(autoincrement())
+  name      String
+  imageURL  String @db.LongText
+  specialty String
+  about     String
 }
+
 model Course {
   id          Int     @id @default(autoincrement())
   title       String
@@ -74,3 +75,4 @@ model Module {
   ProgramModule ProgramModule[]
   CourseModule  CourseModule[]
 }
+

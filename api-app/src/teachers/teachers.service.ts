@@ -8,7 +8,7 @@ export class TeachersService {
   constructor(private readonly prisma: PrismaService) {
   }
    create(createTeacherDto: CreateTeacherDto) {
-    return 'This action adds a new teacher';
+    return this.prisma.teacher.create({ data: createTeacherDto });
   }
 
   findAll() {
@@ -16,14 +16,17 @@ export class TeachersService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} teacher`;
+    return this.prisma.teacher.findUniqueOrThrow({ where: { id } });
   }
 
   update(id: number, updateTeacherDto: UpdateTeacherDto) {
-    return `This action updates a #${id} teacher`;
+   return this.prisma.teacher.update({
+     where: { id },
+     data: updateTeacherDto,
+   });
   }
 
   remove(id: number) {
-    return `This action removes a #${id} teacher`;
+    return this.prisma.teacher.delete({ where: { id } });;
   }
 }

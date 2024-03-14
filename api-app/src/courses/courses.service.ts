@@ -9,7 +9,7 @@ export class CoursesService {
 
   }
   create(createCourseDto: CreateCourseDto) {
-    
+   return this.prisma.course.create({ data: createCourseDto });
   }
 
   findAll() {
@@ -20,10 +20,13 @@ export class CoursesService {
   }
 
   update(id: number, updateCourseDto: UpdateCourseDto) {
-    return `This action updates a #${id} course`;
+    return this.prisma.course.update({
+      where: { id },
+      data: updateCourseDto,
+    });
   }
 
   remove(id: number) {
-    return `This action removes a #${id} course`;
+   return this.prisma.course.delete({ where: { id } });
   }
 }

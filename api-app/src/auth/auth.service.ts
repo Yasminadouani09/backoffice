@@ -6,25 +6,31 @@ import * as bcrypt from 'bcrypt'
 import { JwtService } from '@nestjs/jwt';
 @Injectable()
 export class AuthService {
-  constructor(private readonly prisma:PrismaService, private readonly jwtService:JwtService){
-
-  }
- async login(dto: LoginDto) {
-
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly jwtService: JwtService,
+  ) {}
+  async login(dto: LoginDto) {
     // 'This action adds a new auth'
-    const user= await this.prisma.user.findUnique({where:{
-      email: dto.email
-    }});
-    if(!user){
-      throw new HttpException('invalid email', HttpStatus.BAD_REQUEST) 
+    const user = await this.prisma.user.findUnique({
+      where: {
+        email: dto.email,
+      },
+    });
+    if (!user) {
+      throw new HttpException('invalid email', HttpStatus.BAD_REQUEST);
     }
-    const {password,...rest}=user
-    if (await bcrypt.compare(dto.password,password)){
-      const auth=this.jwtService.sign(rest)
-      return auth;
-    }else{
-throw new HttpException('invalid password', HttpStatus.BAD_REQUEST)
+    const { password, ...rest } = user;
+    if (await bcrypt.compare(dto.password, password)) {
+      const token = this.jwtService.sign(rest);
+      return token;
+    } else {
+      throw new HttpException('invalid password', HttpStatus.BAD_REQUEST);
     }
+  }
+  async getMyInfo(token: string) {
+    const myInfo = this.jwtService.decode(token);
+    return myInfo;
   }
 
   // findAll() {

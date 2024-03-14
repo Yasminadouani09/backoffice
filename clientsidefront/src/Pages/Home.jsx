@@ -4,6 +4,7 @@ import Carrousel from "../Components/Carrousel";
 import Courses from "../Components/Courses";
 import Programs from "../Components/Programs";
 import { Outlet } from 'react-router-dom';
+import Teachers from '../Components/Teachers';
 
 export default function Home() {
   return (
@@ -11,7 +12,8 @@ export default function Home() {
           <Carrousel />
           <AboutUs />
           <Programs />
-          <Courses />
+      <Courses />
+      <Teachers />
           <Outlet/>
     </div>
   )
