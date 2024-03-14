@@ -7,7 +7,8 @@ import { PrismaService } from 'src/prisma/prisma.service';
 export class ProgramsService {
   constructor(private readonly prisma: PrismaService) {
   }
-    async create(dto: CreateProgramDto) {
+     create(createProgramDto : CreateProgramDto) {
+      return this.prisma.program.create({ data: createProgramDto });
     //  return await this.prisma.program.create({
     //    data: dto,
     //  });
@@ -22,10 +23,13 @@ export class ProgramsService {
     }
 
     update(id: number, updateProgramDto: UpdateProgramDto) {
-      return `This action updates a #${id} program`;
+      return this.prisma.program.update({
+     where: { id },
+     data: updateProgramDto,
+      });
     }
 
     remove(id: number) {
-      return `This action removes a #${id} program`;
+      return this.prisma.program.delete({ where: { id }});
     }
   }
