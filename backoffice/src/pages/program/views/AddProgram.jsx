@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch , useSelector } from 'react-redux';
 import { addProgram } from '../../../store/Program';
 
-
+export default function AddProgram() {
 const  AddProgramForm = () => {
   const navigate = useNavigate(); 
    const dispatch = useDispatch();
@@ -109,11 +109,11 @@ const  AddProgramForm = () => {
               <button
                 style={{ width: "9rem" }}
                 className="btn btn-outline-primary"
-                onClick={() => {
-                  dispatch(sendprogram(program)).then((res) => {
-                    if (!res.error) navigate(-1);
-                  });
-                }}
+                // onClick={() => {
+                //   dispatch(sendprogram(program)).then((res) => {
+                //     if (!res.error) navigate(-1);
+                //   });
+                // }}
               >
                 Back
               </button>
@@ -129,4 +129,4 @@ const  AddProgramForm = () => {
       </div>
     </div>
   );
-}
+}}

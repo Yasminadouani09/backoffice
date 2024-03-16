@@ -14,13 +14,13 @@ datasource db {
 }
 
 model User {
-  id Int @id @default(autoincrement())
-  firstName String 
-  lastName String 
-  email String @unique
-  password String
-  phone String?
-  address String?
+  id         Int     @id @default(autoincrement())
+  firstName  String
+  lastName   String
+  email      String  @unique
+  password   String
+  phone      String?
+  address    String?
   occupation String?
 }
 
@@ -62,6 +62,17 @@ model Program {
   imageURL      String          @db.LongText
   price         Float
   ProgramModule ProgramModule[]
+  Session       Session[]
+}
+
+model Session {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String?  @db.LongText
+  duration    String
+  imageURL    String   @db.LongText
+  programId   Int
+  program     Program? @relation(fields: [programId], references: [id])
 }
 
 model ProgramModule {
@@ -78,4 +89,3 @@ model Module {
   ProgramModule ProgramModule[]
   CourseModule  CourseModule[]
 }
-

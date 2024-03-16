@@ -38,13 +38,17 @@ export default function AboutUs() {
                 Welcome to Sfectoria
               </h1>
               <p class="mb-4">
-                Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit.
-                Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit.
+                At Sfectoria, we're committed to pushing the boundaries of
+                innovation. We're excited to harness the power of the latest
+                cutting-edge technologies for your project, ensuring that it not
+                only meets but exceeds your expectations.
               </p>
               <p class="mb-4">
-                Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit.
-                Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit,
-                sed stet lorem sit clita duo justo magna dolore erat amet
+                At SFECTORIA, we specialize in creating custom web applications
+                and websites perfectly tailored to your unique needs. Whether
+                you're a client with a project or an individual seeking digital
+                skills, we're here for you. Our training offerings cater to all
+                levels and foster your digital growth.
               </p>
               <div class="row gy-2 gx-4 mb-4">
                 <div class="col-sm-6">
@@ -67,20 +71,20 @@ export default function AboutUs() {
                 </div>
                 <div class="col-sm-6">
                   <p class="mb-0">
-                    <i class="fa fa-arrow-right text-primary me-2"></i>Skilled
-                    Instructors
-                  </p>
-                </div>
-                <div class="col-sm-6">
-                  <p class="mb-0">
-                    <i class="fa fa-arrow-right text-primary me-2"></i>Online
-                    Classes
+                    <i class="fa fa-arrow-right text-primary me-2"></i>Creative
+                    Team
                   </p>
                 </div>
                 <div class="col-sm-6">
                   <p class="mb-0">
                     <i class="fa fa-arrow-right text-primary me-2"></i>
-                    International Certificate
+                    Top-notch services
+                  </p>
+                </div>
+                <div class="col-sm-6">
+                  <p class="mb-0">
+                    <i class="fa fa-arrow-right text-primary me-2"></i>
+                    Focus on Mastery
                   </p>
                 </div>
               </div>

@@ -6,7 +6,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
-import logo from '../assets/logo.png'
+import logo from '../assets/logo (1).png'
 
 
 function Header(props) {

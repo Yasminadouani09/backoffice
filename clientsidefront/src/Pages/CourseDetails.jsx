@@ -25,7 +25,8 @@ export default function CourseDetails() {
   };
   console.log(form);
   
-   const handleSubmit = async () => {
+   const handleSubmit = async (e) => {
+     e.preventDefault()
      try {
        const response = await axios.post(
          "http://localhost:3100/api/v1",
@@ -112,7 +113,7 @@ export default function CourseDetails() {
            <button class="btn btn-light" onClick={() => handleSubmit()}>
             Accueil
           </button>
-        <Form className="py-5 px-3 ">
+        <Form className="py-5 px-3 " onSubmit={handleSubmit}>
         <Form.Group
           className="mb-3 d-flex p-2 gap-5"
           controlId="exampleForm.ControlInput1"
@@ -229,7 +230,10 @@ export default function CourseDetails() {
         </Form.Select> */}
 
         <div className="  py-2 px-2 d-flex justify-content-center "> 
-          <button name="button" class="btn btn-info">
+          <button  type="submit"
+          name="button"
+           class="btn btn-info"
+           onSubmit={()=> handleSubmit()}>
             Valider ma demande d'inscription
           </button>
        
