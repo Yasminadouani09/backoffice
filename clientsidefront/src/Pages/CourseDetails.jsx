@@ -17,7 +17,8 @@ export default function CourseDetails() {
   };
   console.log(form);
   
-   const handleSubmit = async () => {
+   const handleSubmit = async (e) => {
+     e.preventDefault()
      try {
        const response = await axios.post(
          "http://localhost:3100/api/v1",
@@ -86,7 +87,7 @@ export default function CourseDetails() {
         />
       </div>
 
-      <Form className="py-5 px-3 ">
+      <Form className="py-5 px-3 " onSubmit={handleSubmit}>
         <p class="lead">
           Notre service des admissions prendra contact avec vous dans un délais
           de 48 heures ouvrées suivant votre demande d’inscription issue du
@@ -218,12 +219,15 @@ export default function CourseDetails() {
         </Form.Select> */}
 
         <div className="  py-4 px-2 d-flex">
-          <button name="button" class="btn btn-info">
+          <button
+            type="submit"
+            name="button"
+            class="btn btn-info"
+            onSubmit={() => handleSubmit()}
+          >
             Valider ma demande d'inscription
           </button>
-          <button class="btn btn-light" onClick={() => handleSubmit()}>
-            Accueil
-          </button>
+          <button type="button" class="btn btn-light">Accueil</button>
         </div>
       </Form>
     </div>

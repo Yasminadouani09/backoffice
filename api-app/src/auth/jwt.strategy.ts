@@ -8,7 +8,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     constructor(private readonly prisma: PrismaService) {
       super({
         jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-        ignoreExpiration: false,
+        ignoreExpiration: true,
         secretOrKey: 'LMS learning and management system',
       });
     }

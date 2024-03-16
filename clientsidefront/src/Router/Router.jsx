@@ -8,6 +8,7 @@ import CourseDetails from "../Pages/CourseDetails";
 import ProgramDetails from "../Pages/ProgramDetails";
 import Home from "../Pages/Home";
 import NotFound from "../Pages/NotFound";
+import AboutUs from "../Components/AboutUs";
 export default function Router() {
   return (
     <div>
@@ -15,10 +16,10 @@ export default function Router() {
         <Routes>
           <Route>
             <Route path="/" element={<App />}>
-              <Route index element={<Home />}/>
-              <Route path=":id" element={<CourseDetails/>} />
-              <Route path=":id" element={<ProgramDetails/>} />
-              
+              <Route index element={<Home />} />
+              <Route path="/aboutus" element={<AboutUs />} />
+              <Route path=":id" element={<CourseDetails />} />
+              <Route path=":id" element={<ProgramDetails />} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Route>
