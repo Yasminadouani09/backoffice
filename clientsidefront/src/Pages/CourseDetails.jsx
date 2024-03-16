@@ -13,6 +13,7 @@ import Row from 'react-bootstrap/Row';
 
 
 
+
 export default function CourseDetails() {
 
   const [state, setState] = useState({});
@@ -57,11 +58,13 @@ export default function CourseDetails() {
         </div>
 
       <div>
+    
+  
 
         <div className="d-flex justify-content-center py-5 align-items-center flex-wrap">
-          <h1 style={{ fontFamily: "Brittany Signature" }}>
+          <h3 style={{ fontFamily: "Brittany Signature" }}>
             {state.data?.title}
-          </h1>
+          </h3>
           <div
             style={{
               height: "5px",
@@ -74,14 +77,14 @@ export default function CourseDetails() {
 
         <div className="px-3">
         <h1> {state.data?.description} </h1>
-        <div class="button">{state.data?.price} dt</div>
+        <div class="button"  style={{ marginBottom: '30px' }} >{state.data?.price} dt</div>
         </div>
       </div>
-      <div className="d-flex justify-content-center">
+      <div className="  d-flex justify-content-center" >
         <img
           src={state.data?.imageURL}
           alt=""
-          style={{ borderRadius: "20%" , marginBottom:"8%"}}
+          style={{ borderRadius: "10%" , marginBottom:"8%", width:"80rem" , height:"20rem"  }}
         />
       </div>
       
@@ -106,6 +109,9 @@ export default function CourseDetails() {
         {/* <button class="btn btn-light" onClick={() => this.props.showHome()}>
           Home
         </button> */}
+           <button class="btn btn-light" onClick={() => handleSubmit()}>
+            Accueil
+          </button>
         <Form className="py-5 px-3 ">
         <Form.Group
           className="mb-3 d-flex p-2 gap-5"
@@ -222,14 +228,11 @@ export default function CourseDetails() {
           <option value="3">Vendredis à 11</option>
         </Form.Select> */}
 
-        <div className="  py-4 px-2 d-flex">
+        <div className="  py-2 px-2 d-flex justify-content-center "> 
           <button name="button" class="btn btn-info">
             Valider ma demande d'inscription
           </button>
-          <button class="btn btn-light" onClick={() => handleSubmit()}>
-            Accueil
-          </button>
-         
+       
         </div>
       </Form>
       </div>
@@ -246,12 +249,13 @@ export default function CourseDetails() {
               width: "80px",
               backgroundColor: "rgb(66, 177, 188)",
               marginRight: "42px",
+             
             }}
               ></div>
           
          
 
-<div class="gallery" className="d-flex justify-content-center py-5 align-items-center flex-wrap"  style={{marginTop:"5%"}}>
+<div  class="gallery" style={{marginTop:"5%"}}>
 <Container>
       <Row>
         <Col xs={6} md={4}>
@@ -265,7 +269,11 @@ export default function CourseDetails() {
         </Col>
       </Row>
     </Container>
+
+
 </div>
+
+
   
         </div >
 
