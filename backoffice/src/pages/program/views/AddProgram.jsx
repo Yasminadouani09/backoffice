@@ -3,17 +3,31 @@ import ProgressBar from "react-bootstrap/ProgressBar";
 import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from 'react-redux';
-import { sendprogram } from '../../../store/Program';
+import { useDispatch , useSelector } from 'react-redux';
+import { addProgram } from '../../../store/Program';
 
-export default function AddProgram() {
+
+const  AddProgramForm = () => {
   const navigate = useNavigate(); 
-   const [program, setprogram] = useState({});
    const dispatch = useDispatch();
+   const [formData, setFormData] = useState({
+
+    title:'',     
+    description:'' ,
+    duration:'',
+    imageURL:'',    
+    price:'',
+   });
    const handleChange = (e) => {
      const { name, value } = e.target;
-     setprogram({ ...program, [name]: value });
+     setFormData({ ...formData, [e.target.name]: e.target.value });
    };
+
+   
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(addProgram(formData));
+  };
   return (
     <div>
       <div className="px-5 py-3">
@@ -51,9 +65,11 @@ export default function AddProgram() {
                   <button className="btn btn-outline-primary"> Upload</button>
                 </div> */}
 
-                <Form.Control
+                <Form.Control onSubmit={handleSubmit}
                   className="w-75"
                   type="text"
+                  name="title"
+                  value={formData.title}
                   placeholder="please enter the program image"
                   onChange={handleChange}
                 />

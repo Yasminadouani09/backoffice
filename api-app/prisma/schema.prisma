@@ -38,6 +38,9 @@ model Course {
   imageURL    String  @db.LongText
   description String?
   price       Float
+  src         String  @db.LongText
+  src1        String  @db.LongText
+  src2        String  @db.LongText
 
   CourseModule CourseModule[]
 }

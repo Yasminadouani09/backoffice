@@ -26,6 +26,23 @@ export const fetchcourse = createAsyncThunk("fetchcourse", async (id) => {
   }
 });
 
+// Action types
+export const COURSE_ADDED = 'COURSE_ADDED';
+export const COURSE_ADD_FAILED = 'COURSE_ADD_FAILED';
+
+// Action creators
+export const courseAdded = (course) => ({
+  type: COURSE_ADDED,
+  payload: course,
+});
+
+export const courseAddFailed = (error) => ({
+  type: COURSE_ADD_FAILED,
+  payload: error,
+});
+
+
+
 export const coursesSlice = createSlice({
   name: "courses",
   initialState: {
