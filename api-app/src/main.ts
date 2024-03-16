@@ -14,11 +14,15 @@ async function bootstrap() {
       ],
     });
     const config = new DocumentBuilder()
-    .setTitle('LMS example')
-    .setDescription('The LMS API description')
-    .setVersion('1.0')
-    .addTag('LMS')
-    .build();
+      .setTitle('LMS example')
+      .setDescription('The LMS API description')
+      .setVersion('1.0')
+      .addTag('LMS')
+      .addApiKey(
+        { type: 'apiKey', name: 'Authorization', in: 'header' },
+        'apiKey',
+      )
+      .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api-docs', app, document);
   await app.listen(5000);
