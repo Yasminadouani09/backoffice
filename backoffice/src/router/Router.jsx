@@ -24,27 +24,38 @@ import { getMe } from "../store/auth";
 export const UserContext = createContext();
 
 export default function Router() {
-  const user = useSelector((store) => store.auth.me);
+  // const user = useSelector((store) => store.auth.me);
   const [isLoading, setIsLoading] = useState(true);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    let token = localStorage.getItem("token");
-    if (token)
-      dispatch(getMe()).then((res) => {
-        setIsLoading(false);
-      });
-  }, [dispatch]);
+  const [user, setUser] = useState({
+  "id": 1,
+  "firstName": "yasmine",
+  "lastName": "ad",
+  "email": "yasmine@sfectoria.com",
+  "phone": "78585",
+  "address": "string",
+  "occupation": "string"
+}
+    
+  )
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   let token = localStorage.getItem("token");
+  //   if (token)
+  //     dispatch(getMe()).then((res) => {
+  //       setIsLoading(false);
+  //     });
+  // }, [dispatch]);
 
   return (
     <>
-      {isLoading && (
+      {/* {isLoading && (
         <div
           className="position-fixed h-100 w-100 bg-white justify-content-center d-flex align-items-center"
           style={{ zIndex: 6 }}
         >
           <Spinner animation="border" />
         </div>
-      )}
+      )} */}
       <BrowserRouter>
         <Routes>
           <Route>

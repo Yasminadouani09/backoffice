@@ -120,14 +120,14 @@ export default function CourseDetails() {
         >
           <Form.Control
             className="px-3 border border-info"
-            name="LastName"
-            placeholder="Prénom"
+            name="FirstName"
+            placeholder="FirstName"
             onChange={handleChange}
           />
           <Form.Control
-            name="name"
+            name="LastName"
             className="border border-info"
-            placeholder="FirstName"
+            placeholder="LastName"
             onChange={handleChange}
           />
         </Form.Group>
