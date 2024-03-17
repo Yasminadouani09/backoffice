@@ -16,7 +16,7 @@ import {
 } from "mdb-react-ui-kit";
 
 function NavBar({ isOpen, setIsOpen }) {
-  const { user } = useContext(UserContext);
+  // const { user } = useContext(UserContext);
   const navigate = useNavigate();
   return (
     <div
@@ -69,14 +69,14 @@ function NavBar({ isOpen, setIsOpen }) {
             <IoNotifications />
           </div>
         </div>
-        <p className="m-0">Welcome {user.firstName} ✨</p>
+        {/* <p className="m-0">Welcome {user.firstName} ✨</p> */}
         <Link to="/profile">
-          <img
+          {/* <img
             src={user.src}
             alt=""
             className="rounded-circle"
             style={{ width: 50, height: 50, objectFit: "cover" }}
-          />
+          /> */}
         </Link>
       </div>
     </div>

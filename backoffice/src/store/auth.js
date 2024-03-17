@@ -11,9 +11,8 @@ export const login = createAsyncThunk("login", async (args, { dispatch }) => {
 });
 export const getMe = createAsyncThunk("getMe", async () => {
   const response = await axios.get("http://localhost:5000/auth/me");
-  return response.data;
+  return console.log(response.data);
 });
-
 
 export const authSlice = createSlice({
   name: "auth",
