@@ -21,14 +21,32 @@ export const fetchprogram = createAsyncThunk("fetchprogram", async (id) => {
     throw error;
   }
 });
+//addprogram
 
-export const sendprogram = createAsyncThunk("addProgram", async (body) => {
-  const response = await axios.post(
-    "http://localhost:5000/programs",
-    body
-  );
-  return response.data;
+// Action types
+export const PROGRAM_ADDED = 'PROGRAM_ADDED';
+export const PROGRAM_ADD_FAILED = 'PROGRAM_ADD_FAILED';
+
+// Action creators
+export const programAdded = (program) => ({
+  type: PROGRAM_ADDED,
+  payload: program,
 });
+
+export const programAddFailed = (error) => ({
+  type: PROGRAM_ADD_FAILED,
+  payload: error,
+});
+
+export const addProgram =(programData) => async (dispatch) => {
+  try{
+  const response = await axios.post(
+    "http://localhost:5000/programs", programData);
+    dispatch(programAdded(response.data));
+} catch (error) {
+  dispatch(programAddFailed(error.message));
+}
+};
 
 export const ProgramSlice = createSlice({
   name: "programs",
@@ -49,7 +67,7 @@ export const ProgramSlice = createSlice({
         state.program = action.payload;
 
     });
-     builder.addCase(sendprogram.fulfilled, (state, action) => {
+     builder.addCase(addProgram.fulfilled, (state, action) => {
        state.program = action.payload;
      });
   },

@@ -27,6 +27,6 @@ export class SessionsService {
   }
 
   remove(id: number) {
-    return this.prisma.session.delete({ where: { id } });
+     return this.prisma.session.delete({ where: { id } });
   }
 }

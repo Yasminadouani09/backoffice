@@ -4,10 +4,18 @@ import axios from "axios";
 import { Link, NavLink, useParams } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
-import '../css/CourseDetails.css'
+import logo from '../assets/logo.png';
+import '../Pages/css/buttonform.css';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Image from 'react-bootstrap/Image';
+import Row from 'react-bootstrap/Row';
+
+
 
 
 export default function CourseDetails() {
+
   const [state, setState] = useState({});
   const [form, setForm] = useState({});
   const { id } = useParams();
@@ -46,29 +54,18 @@ export default function CourseDetails() {
    }, []);
   return (
     <div>
-      <div>
-        <div className="backg">
-          <img
-            src="https://images.inc.com/uploaded_files/image/1920x1080/software-computer-code-1940x900_35196.jpg"
-            alt=""
-            style={{
-              height: "50rem",
-              width: "100%",
-            }}
-          />
-          <h1 style={{ position: "absolute" }}>
-            {" "}
-            Welcome to {state.data?.title}{" "}
-          </h1>
+
+<div className="px-5 py-4">  
         </div>
-        <div></div>
-      </div>
 
       <div>
+    
+  
+
         <div className="d-flex justify-content-center py-5 align-items-center flex-wrap">
-          <h1 style={{ fontFamily: "Brittany Signature" }}>
+          <h3 style={{ fontFamily: "Brittany Signature" }}>
             {state.data?.title}
-          </h1>
+          </h3>
           <div
             style={{
               height: "5px",
@@ -76,33 +73,47 @@ export default function CourseDetails() {
               backgroundColor: "rgb(66, 177, 188)",
               marginRight: "42px",
             }}
-          ></div>
+          ></div> 
+        </div >
+
+        <div className="px-3">
+        <h1> {state.data?.description} </h1>
+        <div class="button"  style={{ marginBottom: '30px' }} >{state.data?.price} dt</div>
         </div>
       </div>
-      <div className="d-flex justify-content-center">
+      <div className="  d-flex justify-content-center" >
         <img
           src={state.data?.imageURL}
           alt=""
-          style={{ borderRadius: "20%" }}
+          style={{ borderRadius: "10%" , marginBottom:"8%", width:"80rem" , height:"20rem"  }}
         />
       </div>
+      
+      <div style={{ height: "150px"}}>
 
-      <Form className="py-5 px-3 " onSubmit={handleSubmit}>
-        <p class="lead">
-          Notre service des admissions prendra contact avec vous dans un délais
-          de 48 heures ouvrées suivant votre demande d’inscription issue du
-          formulaire de contact en ligne. Pour un traitement plus rapide, vous
-          pouvez nous contacter par téléphone (+216 55 180 992) .
+      <p class="lead">
+        Our admissions department will contact you within 48 business hours following your registration request submitted via the online contact form. For faster processing, you can reach us by phone at (+216 55 180 992).
         </p>
         <p class="lead">
-          Si vous souhaitez bien rejoindre notre école, remplissez le formulaire
-          ci-dessous et vous serez convié à un entretien d’admission afin
-          d’évaluer la qualité de votre candidature.{" "}
+        If you wish to join our school, please fill out the form below, and you will be invited to an admission interview to assess the quality of your application
         </p>
-        <p className="fs-1  ">Formulaire d'inscription</p>
-        <button class="btn btn-light" onClick={() => this.props.showHome()}>
-          Accueil
-        </button>
+      </div>
+       
+        
+        <div className="px-5 py-4 d-flex justify-content-center" style={{ backgroundImage:
+                "url('https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcm0zNzgtMDkteC5qcGc.jpg')" }} >
+          <div
+            className="card py-5 px-4"
+            style={{ width: "70rem", height: "39rem" }}
+          > 
+          <p className="fs-1  ">Registration form</p>
+        {/* <button class="btn btn-light" onClick={() => this.props.showHome()}>
+          Home
+        </button> */}
+           <button class="btn btn-light" onClick={() => handleSubmit()}>
+            Accueil
+          </button>
+        <Form className="py-5 px-3 " onSubmit={handleSubmit}>
         <Form.Group
           className="mb-3 d-flex p-2 gap-5"
           controlId="exampleForm.ControlInput1"
@@ -218,18 +229,63 @@ export default function CourseDetails() {
           <option value="3">Vendredis à 11</option>
         </Form.Select> */}
 
-        <div className="  py-4 px-2 d-flex">
-          <button
-            type="submit"
-            name="button"
-            class="btn btn-info"
-            onSubmit={() => handleSubmit()}
-          >
+        <div className="  py-2 px-2 d-flex justify-content-center "> 
+          <button  type="submit"
+          name="button"
+           class="btn btn-info"
+           onSubmit={()=> handleSubmit()}>
             Valider ma demande d'inscription
           </button>
-          <button type="button" class="btn btn-light">Accueil</button>
+       
         </div>
       </Form>
-    </div>
+      </div>
+      </div> 
+      <div>
+      <div className="d-flex justify-content-center py-5 align-items-center flex-wrap">
+        
+              <h1 style={{ fontFamily: "Brittany Signature" }}>
+           gallery
+              </h1>
+              <div
+            style={{
+              height: "5px",
+              width: "80px",
+              backgroundColor: "rgb(66, 177, 188)",
+              marginRight: "42px",
+             
+            }}
+              ></div>
+          
+         
+
+<div  class="gallery" style={{marginTop:"5%"}}>
+<Container>
+      <Row>
+        <Col xs={6} md={4}>
+          <Image src={state.data?.src2} thumbnail />
+        </Col>
+        <Col xs={6} md={4}>
+          <Image src={state.data?.src1} thumbnail />
+        </Col>
+        <Col xs={6} md={4}>
+          <Image src={state.data?.src} thumbnail />
+        </Col>
+      </Row>
+    </Container>
+
+
+</div>
+
+
+  
+        </div >
+
+      </div>
+
+      
+      </div>
+      
+   
   );
 }

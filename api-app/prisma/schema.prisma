@@ -33,11 +33,15 @@ model Teacher {
 }
 
 model Course {
-  id           Int            @id @default(autoincrement())
-  title        String
-  imageURL     String         @db.LongText
-  description  String?
-  price        Float
+  id          Int     @id @default(autoincrement())
+  title       String
+  imageURL    String  @db.LongText
+  description String?
+  price       Float
+  src         String  @db.LongText
+  src1        String  @db.LongText
+  src2        String  @db.LongText
+
   CourseModule CourseModule[]
 }
 

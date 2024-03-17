@@ -8,5 +8,11 @@ export class CreateCourseDto {
   @ApiProperty()
   description: string;
   @ApiProperty()
+  src: string;
+  @ApiProperty()
+  src1: string;
+  @ApiProperty()
+  src2: string;
+  @ApiProperty()
   price: number;
 }
