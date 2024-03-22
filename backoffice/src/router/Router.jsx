@@ -27,6 +27,10 @@ import EditUser from "../pages/users/views/EditUser";
 import Student from "../pages/students/Student";
 import AllStudents from "../pages/students/views/AllStudents";
 
+import LessonsList from "../lessons/views/LessonsList";
+import AddLessons from "../lessons/views/AddLessons";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 export const UserContext = createContext();
 
 export default function Router() {
@@ -62,37 +66,43 @@ export default function Router() {
           <Spinner animation="border" />
         </div>
       )} */}
-      <BrowserRouter>
-        <Routes>
-          <Route>
-            {user ? (
-              <Route path="/" element={<App />}>
-                <Route index element={<Dashboard />} />
-
-
-                <Route path="courses" element={<Course />}>
-                  <Route index element={<CourseList />} />
-                  <Route path="add" element={<AddCourse />} />
-                  <Route path=":id" element={<CourseDetails />} />
-                </Route>
+     
 
 
                
               
-                <Route path="profile" element={<Profile />}>
-                  <Route index element={<ProfileDetails />} />
-                  <Route path="edit" element={<EditProfile />} />
-                </Route>
-                <Route path="programs" element={<Programs />}>
-                  <Route index element={<ProgramsList />} />
-                  <Route path="add" element={<AddProgram />} />
-                  <Route path=":id" element={<ProgramDetails />} />
-                </Route>
+             
 
 
 
                
-                <Route path="users" element={<Users />}>
+         
+    
+      <DndProvider backend={HTML5Backend}>
+        <BrowserRouter>
+          <Routes>
+            <Route>
+              {user ? (
+                <Route path="/" element={<App />}>
+                  <Route index element={<Dashboard />} />
+                  <Route path="courses" element={<Course />}>
+                    <Route index element={<CourseList />} />
+                    <Route path="add" element={<AddCourse />} />
+                    <Route path=":id" element={<CourseDetails />} />
+                    <Route path="lesson" element={<LessonsList />} />
+                    <Route path="add" element={<AddLessons />} />
+                  </Route>
+                  <Route path="profile" element={<Profile />}>
+                    <Route index element={<ProfileDetails />} />
+                    <Route path="edit" element={<EditProfile />} />
+                  </Route>
+                  <Route path="programs" element={<Programs />}>
+                    <Route index element={<ProgramsList />} />
+                    <Route path="add" element={<AddProgram />} />
+                    <Route path=":id" element={<ProgramDetails />} />
+                  </Route>
+
+                  <Route path="users" element={<Users />}>
                    <Route index element={<AllUsers />} />
                    <Route path="adduser" element={<AddUser />} />
                    <Route path="edituser" element={<EditUser />} />
@@ -102,16 +112,17 @@ export default function Router() {
                 <Route path="students" element={<Student />}>
                    <Route index element={<AllStudents />} />
                 </Route>
-              </Route>
-            ) : (
-              <Route path="/" element={<Auth />}>
-                <Route index element={<Login />} />
-              </Route>
-            )}
-            <Route path="*" element={<NotFound />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+                </Route>
+              ) : (
+                <Route path="/" element={<Auth />}>
+                  <Route index element={<Login />} />
+                </Route>
+              )}
+              <Route path="*" element={<NotFound />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </DndProvider>
     </>
   );
 }

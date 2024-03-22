@@ -22,7 +22,6 @@ export const fetchprogram = createAsyncThunk("fetchprogram", async (id) => {
   }
 });
 //addprogram
-
 // Action types
 export const PROGRAM_ADDED = 'PROGRAM_ADDED';
 export const PROGRAM_ADD_FAILED = 'PROGRAM_ADD_FAILED';

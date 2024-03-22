@@ -34,25 +34,24 @@ model Teacher {
 }
 
 model Course {
-  id          Int     @id @default(autoincrement())
-  title       String
-  imageURL    String  @db.LongText
-  description String?
-  price       Float
-  src         String  @db.LongText
-  src1        String  @db.LongText
-  src2        String  @db.LongText
-
-  CourseModule CourseModule[]
+  id            Int             @id @default(autoincrement())
+  title         String
+  imageURL      String          @db.LongText
+  description   String?
+  price         Float
+  src           String?         @db.LongText
+  src1          String?         @db.LongText
+  src2          String?         @db.LongText
+  Lesson        Lesson[]
+  ProgramCourse ProgramCourse[]
 }
 
-model CourseModule {
-  courseId Int
-  course   Course @relation(fields: [courseId], references: [id])
-  moduleId Int
-  module   Module @relation(fields: [moduleId], references: [id])
-
-  @@unique(fields: [courseId, moduleId], name: "CourseModule")
+model ProgramCourse {
+  id        Int      @id @default(autoincrement())
+  programId Int
+  program   Program? @relation(fields: [programId], references: [id],onDelete: Cascade)
+  courseId  Int
+  course    Course?  @relation(fields: [courseId], references: [id], onDelete: Cascade)
 }
 
 model Program {
@@ -62,8 +61,8 @@ model Program {
   duration      String
   imageURL      String          @db.LongText
   price         Float
-  ProgramModule ProgramModule[]
   Session       Session[]
+  ProgramCourse ProgramCourse[]
 }
 
 model Session {
@@ -73,20 +72,28 @@ model Session {
   duration    String
   imageURL    String   @db.LongText
   programId   Int
-  program     Program? @relation(fields: [programId], references: [id])
+  program     Program? @relation(fields: [programId], references: [id],onDelete: Cascade)
 }
 
-model ProgramModule {
-  programId Int
-  program   Program @relation(fields: [programId], references: [id])
-  moduleId  Int
-  module    Module  @relation(fields: [moduleId], references: [id])
-
-  @@unique(fields: [programId, moduleId], name: "programModule")
-}
-
-model Module {
+model Lesson {
   id            Int             @id @default(autoincrement())
-  ProgramModule ProgramModule[]
-  CourseModule  CourseModule[]
+  title         String
+  courseId      Int
+  course        Course?         @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  LessonContent LessonContent[]
+}
+
+model LessonContent {
+  id Int @id @default(autoincrement())
+
+  typeContentId Int
+  typeContent   typeContent? @relation(fields: [typeContentId], references: [id],onDelete: Cascade)
+  lessonId      Int
+  lesson        Lesson?      @relation(fields: [lessonId], references: [id],onDelete: Cascade)
+}
+
+model typeContent {
+  id Int @id @default(autoincrement())
+
+  LessonContent LessonContent[]
 }

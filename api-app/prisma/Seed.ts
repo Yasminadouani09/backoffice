@@ -3,7 +3,8 @@ import { dataCourses } from './data';
 import {dataPrograms} from './Forfaits'
 import { dataTeachers } from './TEACHERS';
 import {SessionData} from './SessionData';
-import {dataUser} from './Userdata';
+import { dataUser } from './Userdata';
+import {LessonData} from './lesson'
 
 
 // initialize Prisma Client
@@ -26,6 +27,9 @@ async function main() {
 
   const users = await prisma.user.createMany({
     data: dataUser ,
+  });
+  const lessons = await prisma.lesson.createMany({
+    data: LessonData  ,
   });
 
   console.log('seeded');

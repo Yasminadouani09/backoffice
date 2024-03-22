@@ -5,9 +5,10 @@ import  coursesSlice from './courses'
 import ProgramSlice from "./Program";
 import auth from './auth';
 import userSlice from './UserInfo'
+import  lessonSlice  from './lesson';
 
 export const store = configureStore({
     reducer: {
-        userSlice  , coursesSlice, ProgramSlice,auth
+        userSlice  , coursesSlice, ProgramSlice,auth, lessonSlice
     }
 })
