@@ -22,7 +22,6 @@ export const fetchprogram = createAsyncThunk("fetchprogram", async (id) => {
   }
 });
 //addprogram
-
 // Action types
 export const PROGRAM_ADDED = 'PROGRAM_ADDED';
 export const PROGRAM_ADD_FAILED = 'PROGRAM_ADD_FAILED';
@@ -67,9 +66,9 @@ export const ProgramSlice = createSlice({
         state.program = action.payload;
 
     });
-     builder.addCase(addProgram.fulfilled, (state, action) => {
-       state.program = action.payload;
-     });
+    //  builder.addCase(addProgram.fulfilled, (state, action) => {
+    //    state.program = action.payload;
+    //  });
   },
 });
 // console.log(counterSlice.actions);
