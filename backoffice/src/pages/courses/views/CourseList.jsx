@@ -34,7 +34,7 @@ export default function CourseList() {
           Add course
         </button>
       </div>
-      <div className="d-flex flex-wrap justify-content-between px-5 py-5 gap-5 ">
+      <div className="d-flex flex-wrap justify-content-center py-5 gap-5 ">
         {courses.map((card) => (
           <Card style={{ width: "21rem", height: "28rem" }}>
             <Card.Img

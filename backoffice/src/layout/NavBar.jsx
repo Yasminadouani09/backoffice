@@ -22,7 +22,7 @@ function NavBar({ isOpen, setIsOpen }) {
     <div
       className={` d-flex ${
         isOpen ? "justify-content-end" : "justify-content-between"
-      } align-items-center`}
+      } align-items-center shadow-sm`}
       style={{
         zIndex: 2,
         backgroundColor: "#F8FAFB",

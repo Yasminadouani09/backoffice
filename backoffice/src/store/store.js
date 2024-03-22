@@ -3,10 +3,12 @@ import { userInfo } from './UserInfo'
 import { courses } from './courses'
 import  coursesSlice from './courses'
 import ProgramSlice from "./Program";
-import auth from './auth'
+import auth from './auth';
+import userSlice from './UserInfo'
 import  lessonSlice  from './lesson';
 
 export const store = configureStore({
     reducer: {
-        userInfo, coursesSlice, ProgramSlice,auth,lessonSlice }
+        userSlice  , coursesSlice, ProgramSlice,auth, lessonSlice
+    }
 })

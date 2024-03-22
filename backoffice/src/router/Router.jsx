@@ -4,7 +4,9 @@ import Dashboard from "../pages/Dashboard";
 import Auth from "../apps/auth";
 import Course from "../pages/courses/Courses";
 import NotFound from "../pages/NotFound";
-import Users from "../pages/Users";
+import Users from "../pages/users/Users";
+import AllUsers from "../pages/users/views/AllUsers";
+import AddUser from "../pages/users/views/AddUser";
 import AddCourse from "../pages/courses/views/AddCourse";
 import CourseList from "../pages/courses/views/CourseList";
 import CourseDetails from "../pages/courses/views/CourseDetails";
@@ -21,6 +23,10 @@ import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
 import Login from '../pages/auth/Login';
 import Spinner from "react-bootstrap/Spinner";
 import { getMe } from "../store/auth";
+import EditUser from "../pages/users/views/EditUser";
+import Student from "../pages/students/Student";
+import AllStudents from "../pages/students/views/AllStudents";
+
 import LessonsList from "../lessons/views/LessonsList";
 import AddLessons from "../lessons/views/AddLessons";
 import { DndProvider } from "react-dnd";
@@ -60,6 +66,18 @@ export default function Router() {
           <Spinner animation="border" />
         </div>
       )} */}
+     
+
+
+               
+              
+             
+
+
+
+               
+         
+    
       <DndProvider backend={HTML5Backend}>
         <BrowserRouter>
           <Routes>
@@ -84,7 +102,16 @@ export default function Router() {
                     <Route path=":id" element={<ProgramDetails />} />
                   </Route>
 
-                  <Route path="all_users" element={<Users />} />
+                  <Route path="users" element={<Users />}>
+                   <Route index element={<AllUsers />} />
+                   <Route path="adduser" element={<AddUser />} />
+                   <Route path="edituser" element={<EditUser />} />
+                   <Route path="student" element={<Student />} />
+                </Route>
+
+                <Route path="students" element={<Student />}>
+                   <Route index element={<AllStudents />} />
+                </Route>
                 </Route>
               ) : (
                 <Route path="/" element={<Auth />}>

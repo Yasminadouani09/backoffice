@@ -71,11 +71,13 @@ function SideBar({ setIsOpen }) {
         <li className="px-2 py-2">
           <NavDropdown title="Users" id="basic-nav-dropdown">
             <NavDropdown.Item>
-              <Link style={{ textDecoration: "none" }} to="/all_users">
+              <Link style={{ textDecoration: "none" }} to="users">
                 All users
               </Link>
             </NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.2">Students</NavDropdown.Item>
+            <NavDropdown.Item> <Link style={{ textDecoration: "none" }} to="students">
+            Students
+              </Link></NavDropdown.Item>
             <NavDropdown.Item href="#action/3.3">Teachers</NavDropdown.Item>
             <NavDropdown.Item href="#action/3.3">Managers</NavDropdown.Item>
           </NavDropdown>

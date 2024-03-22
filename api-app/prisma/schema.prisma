@@ -21,7 +21,8 @@ model User {
   password   String
   phone      String?
   address    String?
-  occupation String?
+  role       String
+ 
 }
 
 model Teacher {
