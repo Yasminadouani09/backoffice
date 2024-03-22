@@ -20,7 +20,8 @@ export default function Courses() {
     };
 
     useEffect(() => {
-       getData();
+      getData();
+          
     }, []);
     return (
       <div>
@@ -61,7 +62,9 @@ export default function Courses() {
                   {card.description}
                 </Card.Text>
                 <div className="d-flex justify-content-around">
-                  <Link to={`${card.id}`}>See more</Link>
+                  <Link to={`${card.id}`} className="btn btn-primary">
+                    See more
+                  </Link>
 
                   {/* <Link
                       to={`/${card.id}`}
