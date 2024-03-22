@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@mui/material": "^5.15.14",
+    "@mui/x-data-grid": "^6.19.8"
+  }
+}

@@ -67,9 +67,9 @@ export const ProgramSlice = createSlice({
         state.program = action.payload;
 
     });
-     builder.addCase(addProgram.fulfilled, (state, action) => {
-       state.program = action.payload;
-     });
+    //  builder.addCase(addProgram.fulfilled, (state, action) => {
+    //    state.program = action.payload;
+    //  });
   },
 });
 // console.log(counterSlice.actions);
