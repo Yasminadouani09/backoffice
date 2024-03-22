@@ -27,7 +27,8 @@ export class UsersService {
   }
 
   findOne(id: number) {
-    // return this.prisma.users.findUniqueOrThrow({ where: { id } });
+    return this.prisma.user.findUniqueOrThrow({ where: { id } });
+    
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {
