@@ -47,6 +47,18 @@ export const addProgram =(programData) => async (dispatch) => {
 }
 };
 
+
+
+export const deleteprogram = createAsyncThunk("deleteprogram", async (id) => {
+  try {
+    const response = await axios.delete("http://localhost:5000/programs/" + id);
+    return response.data;
+  } catch (error) {
+    console.error("Error deleting program:", error);
+    throw error;
+  }
+});
+
 export const ProgramSlice = createSlice({
   name: "programs",
   initialState: {
@@ -65,6 +77,9 @@ export const ProgramSlice = createSlice({
     builder.addCase(fetchprogram.fulfilled, (state, action) => {
         state.program = action.payload;
 
+    });
+    builder.addCase(deleteprogram.fulfilled, (state, action) => {
+      state.deleteprogram = action.payload;
     });
     //  builder.addCase(addProgram.fulfilled, (state, action) => {
     //    state.program = action.payload;
