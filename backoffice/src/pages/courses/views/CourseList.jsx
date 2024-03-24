@@ -10,7 +10,7 @@ import Modal from "react-bootstrap/Modal";
 
 export default function CourseList() {
   const courses = useSelector((state) => state.coursesSlice.courses.items);
-  const [modalShow, setModalShow] = useState(false);
+  const  [modalShow, setModalShow] = useState(false);
   const [deletedId,setDeletedId]=useState("")
 
   const dispatch = useDispatch();

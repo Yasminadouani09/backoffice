@@ -47,13 +47,28 @@ export const courseAdded = (course) => ({
   payload: course,
 });
 
+// export const updatecourse = createAsyncThunk(
+//   "updatecourse",
+//   async (body) => {
+//     const response = await axios.put(
+//       "http://localhost:5000/courses/"+id,
+//       body );
+//     return response.data;
+//   }
+// );
+
+
+
+
 export const courseAddFailed = (error) => ({
   type: COURSE_ADD_FAILED,
   payload: error,
 });
 export const sendcourse = createAsyncThunk("addcourse", async (body) => {
   const response = await axios.post("http://localhost:5000/courses", body);
+  console.log(response.data," this is course data");
   return response.data;
+  
 });
 
 export const coursesSlice = createSlice({

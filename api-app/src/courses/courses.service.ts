@@ -13,7 +13,7 @@ export class CoursesService {
   }
 
   findAll() {
-     return this.prisma.course.findMany();
+    return this.prisma.course.findMany({ include: { Lesson: true } });
   }
   findOne(id: number) {
     return this.prisma.course.findUniqueOrThrow({ where: { id } });;
