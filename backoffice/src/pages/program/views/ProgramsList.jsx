@@ -5,13 +5,10 @@
 // import { Link, useNavigate, useParams } from "react-router-dom";
 // import { Button, Modal } from "bootstrap";
 
-
-
 // export default function ProgramsList() {
 //   const programs = useSelector((state) => state.ProgramSlice.programs.items);
 //    const [modalShow, setModalShow] = useState(false);
 //    const [deletedId, setDeletedId] = useState("");
-
 
 //   console.log(programs);
 
@@ -101,9 +98,6 @@
 //   );
 // }
 
-
-
-
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteprogram, fetchprograms } from "../../../store/Program";
@@ -118,21 +112,21 @@ export default function ProgramsList() {
   const programs = useSelector((state) => state.ProgramSlice.programs.items);
   const [modalShow, setModalShow] = useState(false);
   const [deletedId, setDeletedId] = useState("");
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchprograms());
   }, [dispatch]);
 
-  const deleteprogram = (id) => {
+  const deleteProgram = (id) => {
     dispatch(deleteprogram(id));
-    window.location.reload();
   };
 
   const navigate = useNavigate();
   const deletedIdfunc = (id) => {
-    setDeletedId(id)
-  }
+    setDeletedId(id);
+  };
   return (
     <div>
       <div className="px-5">
@@ -163,7 +157,7 @@ export default function ProgramsList() {
                   className="btn btn-danger"
                   onClick={() => {
                     setModalShow(true);
-                    deletedIdfunc(card.id)
+                    deletedIdfunc(card.id);
                   }}
                 >
                   Delete
@@ -194,7 +188,7 @@ export default function ProgramsList() {
           <Button
             className="btn btn-danger"
             onClick={() => {
-              deleteprogram(deletedId);
+              deleteProgram(deletedId);
               setModalShow(false);
             }}
           >

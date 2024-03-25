@@ -31,6 +31,7 @@ import LessonsList from "../lessons/views/LessonsList";
 import AddLessons from "../lessons/views/AddLessons";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
+import UpdateCourse from "../pages/courses/views/UpdateCourse";
 export const UserContext = createContext();
 
 export default function Router() {
@@ -88,8 +89,9 @@ export default function Router() {
                   <Route path="courses" element={<Course />}>
                     <Route index element={<CourseList />} />
                     <Route path="add" element={<AddCourse />} />
-                    <Route path=":id" element={<CourseDetails />} />
+                    <Route path="details/:id" element={<CourseDetails />} />
                     <Route path="lesson" element={<LessonsList />} />
+                    <Route path="update/:id" element={<UpdateCourse />} />
                     <Route path="add" element={<AddLessons />} />
                   </Route>
                   <Route path="profile" element={<Profile />}>
