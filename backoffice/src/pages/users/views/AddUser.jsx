@@ -1,41 +1,37 @@
 import React from 'react'
 import Form from "react-bootstrap/Form";
+import FormGroup from "react-bootstrap/esm/FormGroup";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
 import { UserContext } from "../../../router/Router";
 import { useNavigate } from "react-router-dom";
 import { useState } from 'react';
-import { useContext } from 'react';
 
-import { SiDiscord } from "react-icons/si";
 import { useDispatch, useSelector } from 'react-redux';
-import { addUser } from '../../../store/UserInfo';
+import { senduser } from '../../../store/UserInfo';
 
 
 export default function AddUser() {
-  
-
-  const [firstname, setFirstName] = useState("");
-  const [lastname, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [address, setAddress] = useState("");
-  const [occupation, setOccupation] = useState("");
-  const users =useSelector((state)=> state.users);
+  const [user, setuser] = useState({});
   const navigate = useNavigate();
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    dispatch(addUser({id :users[users.length - 1].id + 1, firstname ,lastname,  email, phone }))
-    // navigate('index')
-  }
-  
-
   const dispatch = useDispatch();
+ 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setuser({ ...user, [name]: name === "phone" ? +value : value });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(senduser(user)).then((res) => {
+      if (!res.error) navigate("/users");
+      else alert("you should fill the form");
+    });
+ 
+  }
   return (
     <div>
-<h3
+           <h3
         className="p-1"
         style={{
           fontFamily: "Segoe UI",
@@ -46,139 +42,138 @@ export default function AddUser() {
         Add user
       </h3>
 
-<section style={{ backgroundColor: "#eee" }} onSubmit={handleSubmit}>
+
       <div class="container py-5">
           <div style={{ width: "48rem" }} class="col-lg-8">
             <div class="card mb-4">
               <div class="card-body">
               <p class="text- text-center">SFECTORIAN ✌️</p>
-                <div class="row">
-                  <div class="col-sm-3">
-                    <p class="mb-0">First Name</p>
-                  </div>
-                  <div class="col-sm-9">
+              <Form>
+                  <FormGroup className="mb-3" controlId="formBasicEmail">
+                    <Form.Label>First Name</Form.Label>
                     <p class="text-muted mb-0">
-                      <Form.Control
+                      <input
                         type="text"
-                        name='firstname'
+                        name='firstName'
                         placeholder=" first name"
-                        onChange={(e) => setFirstName (e.target.value)}
+                        onChange={handleChange}
                       />
                     </p>
-                  </div>
-                </div>
+                 
+               
                 <hr />
-                <div class="row">
-                  <div class="col-sm-3">
-                    <p class="mb-0">Last Name</p>
-                  </div>
-                  <div class="col-sm-9">
+                    <Form.Label>Last Name</Form.Label>
                     <p class="text-muted mb-0">
-                      <Form.Control
+                      <input
                         type="text"
-                        name='lastname'
+                        name='lastName'
                         placeholder="last name"
-                        onChange={(e) => setLastName (e.target.value)}
+                        onChange={handleChange}
                         
                       />
                     </p>
-                  </div>
-                </div>
+                 
+               
                 <hr />
-                <div class="row">
-                  <div class="col-sm-3">
-                    <p class="mb-0">Email</p>
-                  </div>
-                  <div class="col-sm-9">
+               
+                    <Form.Label>Email</Form.Label>
                     <p class="text-muted mb-0">
-                      <Form.Control
+                      <input
                         type="email"
                         name='email'
                         placeholder="email"
-                        onChange={(e) => setEmail (e.target.value)}
+                        onChange={handleChange}
                         
                       />
                     </p>
-                  </div>
-                </div>
+                 
                 <hr />
-                <div class="row">
-                  <div class="col-sm-3">
-                    <p class="mb-0">Phone</p>
-                  </div>
-                  <div class="col-sm-9">
+
+                
+                    <Form.Label>Password</Form.Label>
+                  
+                 
                     <p class="text-muted mb-0">
-                      <Form.Control
+                     
+                      <input
+                        type="text"
+                        name='password'
+                        placeholder="password"
+                        onChange={handleChange}
+                        
+                      />
+                    </p>
+                
+                <hr />
+                
+                    <Form.Label>Phone</Form.Label>
+                 
+                    <p class="text-muted mb-0">
+                      <input
                         type="tel"
                         name='phone'
                         placeholder="phone"
-                        onChange={(e) => setPhone (e.target.value)}
+                        onChange={handleChange}
                         
                       />
                     </p>
-                  </div>
-                </div>
+                 
                 <hr />
-                <div class="row">
-                  <div class="col-sm-3">
-                    <p class="mb-0">Address</p>
-                  </div>
-                  <div class="col-sm-9">
+                
+                    <Form.Label>Address</Form.Label>
+                  
+                
                     <p class="text-muted mb-0">
                      
-                      <Form.Control
+                      <input
                         type="text"
                         name='address'
                         placeholder="adress"
-                        onChange={(e) => setAddress (e.target.value)}
+                        onChange={handleChange}
                         
                       />
                     </p>
-                  </div>
-                </div>
+                
                 <hr />
-                <div class="row">
-                    <div class="col-sm-3">
-                      <p class="mb-0">Occupation</p>
-                    </div>
-                    <div class="col-sm-9">
-                      <p class="text-muted mb-0">
-                        <select
-                          id=""
-                          name="occupation"
-                          type="text"
-                          onChange={(e) => setOccupation (e.target.value)}
-                         
-                          
-                        >
-                          <option value="volvo">student</option>
-                          <option value="saab">worker</option>
-                          <option value="fiat">other</option>
-                        </select>
-                      </p>
-                    </div>
-                  </div>
+                
+               
+                    <Form.Label>Role</Form.Label>
+                 
+                    <p class="text-muted mb-0">
+                     
+                      <input
+                        type="text"
+                        name='role'
+                        placeholder="role"
+                        onChange={handleChange}
+                        
+                      />
+                    </p>
+                
+                    
+                    
+                  
                   <div class="d-flex justify-content-center">
                   <Button
                     style={{ width: "7rem" }}
                     variant="warning"
-                    onClick={(e) => {
-                      // onSubmit={()=> handleSubmit()}
-                      // navigate(-1);
-                    }}
+                    type="submit"
+                    onClick={handleSubmit}
                     >
                     Save
                   </Button>
-                </div>
-              </div>
-            </div>
+                  </div>
             
+             
+            
+            </FormGroup>
+                </Form>
           </div>
         </div>
       
-    </section>
+        </div>
 
-      
+        </div> 
     </div>
-  )
+  );
 }

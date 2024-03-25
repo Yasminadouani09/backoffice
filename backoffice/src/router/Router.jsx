@@ -7,6 +7,7 @@ import NotFound from "../pages/NotFound";
 import Users from "../pages/users/Users";
 import AllUsers from "../pages/users/views/AllUsers";
 import AddUser from "../pages/users/views/AddUser";
+import UserDetails from "../pages/users/views/UserDetails";
 import AddCourse from "../pages/courses/views/AddCourse";
 import CourseList from "../pages/courses/views/CourseList";
 import CourseDetails from "../pages/courses/views/CourseDetails";
@@ -31,6 +32,7 @@ import LessonsList from "../lessons/views/LessonsList";
 import AddLessons from "../lessons/views/AddLessons";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
+
 export const UserContext = createContext();
 
 export default function Router() {
@@ -105,13 +107,12 @@ export default function Router() {
                   <Route path="users" element={<Users />}>
                    <Route index element={<AllUsers />} />
                    <Route path="adduser" element={<AddUser />} />
-                   <Route path="edituser" element={<EditUser />} />
+                   <Route path="userdetails/:id" element={<UserDetails />} />
+
+                   <Route path="edituser/:id" element={<EditUser />} />
                    <Route path="student" element={<Student />} />
                 </Route>
 
-                <Route path="students" element={<Student />}>
-                   <Route index element={<AllStudents />} />
-                </Route>
                 </Route>
               ) : (
                 <Route path="/" element={<Auth />}>
