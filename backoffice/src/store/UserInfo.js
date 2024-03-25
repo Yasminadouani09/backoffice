@@ -24,18 +24,6 @@ export const fetchuser = createAsyncThunk("fetchuser", async (id) => {
   }
 });
 
-const handleSubmit = async (e) => {
-  e.preventDefault()
-  try {
-    const response = await axios.post(
-      "http://localhost:5000/users",
-     
-    );
-    console.log(response);
-  } catch (error) {
-    console.log(error);
-  }
-};
 
 // Action types
 export const USER_ADDED = 'USER_ADDED';
@@ -52,8 +40,35 @@ export const userAddFailed = (error) => ({
   payload: error,
 });
 
+export const senduser = createAsyncThunk("adduser", async (body) =>{
+  const response = await axios.post("http://localhost:5000/users", body);
+  return response.data;
+});
 
- 
+export const deleteuser = createAsyncThunk("deleteuser", async (id) => {
+  try {
+    const response = await axios.delete("http://localhost:5000/users/" + id);
+  
+
+    return response.data;
+  } catch (error) {
+    console.error("Error deleting user:", error);
+    throw error;
+  }
+});
+
+export const edituser = createAsyncThunk("edituser", async (args,{dispatch}) => {
+  const {id , body} = args
+  try {
+    const response = await axios.patch("http://localhost:5000/users/" + id, body);
+  
+dispatch(fetchuser(id))
+    return response.data;
+  } catch (error) {
+    console.error("Error deleting user:", error);
+    throw error;
+  }
+});
 
 
 
@@ -67,11 +82,7 @@ export const userSlice = createSlice({
     },
     },
   
-  reducers: {
-    addUser : (state, action) =>{
-      state.push(action.payload)
-    }
-  },
+  reducers: {},
   extraReducers(builder) {
     builder.addCase(fetchusers.fulfilled, (state, action) => {
         state.users.items = action.payload;
@@ -80,13 +91,13 @@ export const userSlice = createSlice({
     builder.addCase(fetchuser.fulfilled, (state, action) => {
       state.user = action.payload;
     });
-    // builder.addCase(handleSubmit.fulfilled, (state, action) => {
-    //   state.user = action.payload;
-    // });
-    // builder.addCase(fetchCourse.fulfilled, (state, action) => {
-    //     state.course = action.payload;
-        
-    // });
+    builder.addCase(senduser.fulfilled, (state, action) => {
+      state.user = action.payload;
+    });
+    builder.addCase(deleteuser.fulfilled, (state, action) => {
+      state.user = action.payload;
+       });
+     
   },
 });
 // console.log(counterSlice.actions);

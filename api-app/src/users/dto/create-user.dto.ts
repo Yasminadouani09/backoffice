@@ -14,7 +14,7 @@ export class CreateUserDto {
     password :string;
     @ApiProperty()
     @IsNumber()
-    phone :string;
+    phone :number;
     @ApiProperty()
     address :string;
     @ApiProperty()

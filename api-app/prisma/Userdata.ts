@@ -6,7 +6,7 @@ export const dataUser =[
     lastName: "ghofrane",
     email: "ghofferchichi@gmail.com",
     password: "1111",
-    phone: "258147369",
+    phone: 258147369,
     address: "Tunis",
     role: "student"
     
@@ -18,7 +18,7 @@ export const dataUser =[
     lastName: "ranim",
     email: "ranimferchichi@gmail.com",
     password: "1122",
-    phone: "14725836",
+    phone: 14725836,
     address: "Sfax",
     role: "student"
   },
@@ -29,7 +29,7 @@ export const dataUser =[
     lastName: "mariem",
     email: "mariemoueslati@gmail.com",
     password: "3333",
-    phone: "3336836",
+    phone: 3336836,
     address: "Siliana",
     role: "student"
   },
@@ -39,7 +39,7 @@ export const dataUser =[
     lastName: "hamza",
     email: "chakrounhamza@gmail.com",
     password: "0010",
-    phone: "00836836",
+    phone: 58636836 ,
     address: "Sousse",
     role: "student"
   },
@@ -50,7 +50,7 @@ export const dataUser =[
     lastName: "ghaith",
     email: "ghaithferchichi@gmail.com",
     password: "2222",
-    phone: "1555836",
+    phone: 1555836,
     address: "Beja",
     role: "student"
   },
@@ -60,7 +60,7 @@ export const dataUser =[
     lastName: "emna",
     email: "chebiemna@gmail.com",
     password: "1510",
-    phone: "20836836",
+    phone: 20836836,
     address: "Gabes",
     role: "student"
   },
@@ -71,7 +71,7 @@ export const dataUser =[
     lastName: "farouk",
     email: "mestirifarouk@gmail.com",
     password: "0009",
-    phone: "29836836",
+    phone: 29836836,
     address: "Djerba",
     role: "teacher"
   },
@@ -82,7 +82,7 @@ export const dataUser =[
     lastName: "mohamed",
     email: "afifimohamed@gmail.com",
     password: "2209",
-    phone: "98836836",
+    phone: 98836836,
     address: "Ben Arous",
     role: "teacher"
   },
@@ -92,7 +92,7 @@ export const dataUser =[
     lastName: "rania",
     email: "elounirania@gmail.com",
     password: "0007",
-    phone: "56836836",
+    phone: 56836836,
     address: "Ariana",
     role: "teacher"
   },
@@ -103,7 +103,7 @@ export const dataUser =[
     lastName: "khalil",
     email: "kraiemkhalil@gmail.com",
     password: "0887",
-    phone: "50836036",
+    phone: 50836036,
     address: "Nabeul",
     role: "manager"
   }
