@@ -12,9 +12,7 @@ export const fetchprograms = createAsyncThunk("fetchprograms", async () => {
 });
 export const fetchprogram = createAsyncThunk("fetchprogram", async (id) => {
   try {
-    const response = await axios.get(
-      "http://localhost:5000/programs/"+id
-    );
+    const response = await axios.get("http://localhost:5000/programs/" + id);
     return response.data;
   } catch (error) {
     console.error("Error fetching program:", error);
@@ -23,8 +21,8 @@ export const fetchprogram = createAsyncThunk("fetchprogram", async (id) => {
 });
 //addprogram
 // Action types
-export const PROGRAM_ADDED = 'PROGRAM_ADDED';
-export const PROGRAM_ADD_FAILED = 'PROGRAM_ADD_FAILED';
+export const PROGRAM_ADDED = "PROGRAM_ADDED";
+export const PROGRAM_ADD_FAILED = "PROGRAM_ADD_FAILED";
 
 // Action creators
 export const programAdded = (program) => ({
@@ -37,15 +35,34 @@ export const programAddFailed = (error) => ({
   payload: error,
 });
 
-export const addProgram =(programData) => async (dispatch) => {
-  try{
-  const response = await axios.post(
-    "http://localhost:5000/programs", programData);
+export const addProgram = (programData) => async (dispatch) => {
+  try {
+    const response = await axios.post(
+      "http://localhost:5000/programs",
+      programData
+    );
     dispatch(programAdded(response.data));
-} catch (error) {
-  dispatch(programAddFailed(error.message));
-}
+  } catch (error) {
+    dispatch(programAddFailed(error.message));
+  }
 };
+
+export const deleteprogram = createAsyncThunk(
+  "deleteprogram",
+  async (id, { dispatch }) => {
+    try {
+      const response = await axios.delete(
+        "http://localhost:5000/programs/" + id
+      );
+
+      dispatch(fetchprograms());
+      return response.data;
+    } catch (error) {
+      console.error("Error deleting program:", error);
+      throw error;
+    }
+  }
+);
 
 export const ProgramSlice = createSlice({
   name: "programs",
@@ -63,9 +80,11 @@ export const ProgramSlice = createSlice({
       state.programs.items = action.payload;
     });
     builder.addCase(fetchprogram.fulfilled, (state, action) => {
-        state.program = action.payload;
-
+      state.program = action.payload;
     });
+    // builder.addCase(deleteprogram.fulfilled, (state, action) => {
+    //   state.programs.items = action.payload;
+    // });
     //  builder.addCase(addProgram.fulfilled, (state, action) => {
     //    state.program = action.payload;
     //  });

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
@@ -14,20 +14,23 @@ export default function AddCourse() {
   const [course, setcourse] = useState({});
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  console.log(course.id, "this is the course id")
+  const [courseid, setCourseid] = useState(null)
+  console.log(courseid)
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setcourse({ ...course, [name]: name === "price" ? +value : value });
   };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-   
-
-    dispatch(sendcourse(course)).then((res) => {
-      if (!res.error) navigate("/courses/lesson");
-      else alert("you should fill the form");
-    });
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   dispatch(sendcourse(course)).then((res) => {
+  //     if (!res.error)
+  //      window.location.href ="http://localhost:3000/courses/lesson";
+  //     else
+  //       alert("you should fill the form");
+  //   });
+  // };
 
   console.log(course);
   const [preview, setpreview] = useState(null);
@@ -49,12 +52,16 @@ export default function AddCourse() {
                   <button
                     className="btn btn-primary"
                     type="submit"
-                    onClick={handleSubmit}
-                    // onClick={() => {
-                    //   dispatch(sendcourse(course)).then((res) => {
-                    //     if (!res.error) navigate(-1);
-                    //   });
-                    // }}
+                    
+                    
+                    onClick={(courseid) => {
+                      dispatch(sendcourse(course)).then((res) => {
+                        setCourseid(course.id)
+                        if (!res.error) (
+                          navigate("/courses/lesson/")
+                        ) 
+                      });
+                    }}
                   >
                     next
                   </button>
