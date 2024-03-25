@@ -5,6 +5,7 @@ import axios from "axios";
 export const fetchCourses = createAsyncThunk("fetchCourses", async () => {
   try {
     const response = await axios.get("http://localhost:5000/courses");
+   
     return response.data;
   } catch (error) {
     console.error("Error fetching courses:", error);
@@ -47,15 +48,14 @@ export const courseAdded = (course) => ({
   payload: course,
 });
 
-// export const updatecourse = createAsyncThunk(
-//   "updatecourse",
-//   async (body) => {
-//     const response = await axios.put(
-//       "http://localhost:5000/courses/"+id,
-//       body );
-//     return response.data;
-//   }
-// );
+export const updatecourse = createAsyncThunk("updatecourse", async (body,id) => {
+  const response = await axios.patch(
+    "http://localhost:5000/courses/" + id,
+    body
+  );
+  console.log(response.data, " this is updated data");
+  return response.data;
+});
 
 
 
@@ -95,6 +95,9 @@ export const coursesSlice = createSlice({
     });
     builder.addCase(deletecourse.fulfilled, (state, action) => {
    state.course = action.payload;
+    });
+    builder.addCase(updatecourse.fulfilled, (state, action) => {
+      state.course = action.payload;
     });
   },
 });

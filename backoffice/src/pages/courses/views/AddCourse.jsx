@@ -53,12 +53,10 @@ export default function AddCourse() {
                     className="btn btn-primary"
                     type="submit"
                     
-
                     
-                    onClick={() => {
+                    onClick={(courseid) => {
                       dispatch(sendcourse(course)).then((res) => {
-                        console.log(res.data);
-                        // setCourseid(res.data.id)
+                        setCourseid(course.id)
                         if (!res.error) (
                           navigate("/courses/lesson/")
                         ) 
