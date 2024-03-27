@@ -22,10 +22,11 @@ export default function CourseList() {
 
   const deleteCourse=(id)=>{
     dispatch(deletecourse(id));
-    window.location.reload();
 }
 
-
+ const deletedIdfunc = (id) => {
+   setDeletedId(id);
+ };
   const navigate = useNavigate();
   return (
     <div>
@@ -40,28 +41,27 @@ export default function CourseList() {
             <Card.Img
               variant="top"
               src={card.imageURL}
-              style={{ height: "12rem" }}
+              style={{ height: "11rem" }}
               className="thumb-img"
             />
             <Card.Body>
-              <Card.Title style={{ width: "18rem" }}>{card.title}</Card.Title>
-              <Card.Text style={{ width: "18rem" }}>
+              <Card.Title style={{ width: "18rem", height: "4rem" }}>
+                {card.title}
+              </Card.Title>
+              <Card.Text style={{ width: "18rem", height: "7rem" }}>
                 {card.description}
               </Card.Text>
-              <div className="d-flex gap-3">
+              <div style={{height:"3rem"}}>
+
+              <div className="d-flex gap-3" >
                 <Link to={`details/${card.id}`}>
                   <button className="btn btn-primary">See more</button>
                 </Link>
                 <button
                   className="btn btn-warning"
-                  onClick={() =>{
-
-                    navigate(`update/${card.id}`)
-                    
-
-                  }
-                  
-                  }
+                  onClick={() => {
+                    navigate(`update/${card.id}`);
+                  }}
                 >
                   Update
                 </button>
@@ -69,11 +69,12 @@ export default function CourseList() {
                   className="btn btn-danger"
                   onClick={() => {
                     setModalShow(true);
-                    setDeletedId(card.id);
+                   deletedIdfunc(card.id);
                   }}
                 >
                   Delete
                 </button>
+              </div>
               </div>
             </Card.Body>
           </Card>

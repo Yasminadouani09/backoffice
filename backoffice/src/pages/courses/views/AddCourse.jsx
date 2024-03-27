@@ -58,7 +58,7 @@ export default function AddCourse() {
                       dispatch(sendcourse(course)).then((res) => {
                         setCourseid(course.id)
                         if (!res.error) (
-                          navigate("/courses/lesson/")
+                          navigate(-1)
                         ) 
                       });
                     }}

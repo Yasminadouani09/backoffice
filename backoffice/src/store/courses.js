@@ -5,7 +5,7 @@ import axios from "axios";
 export const fetchCourses = createAsyncThunk("fetchCourses", async () => {
   try {
     const response = await axios.get("http://localhost:5000/courses");
-   
+
     return response.data;
   } catch (error) {
     console.error("Error fetching courses:", error);
@@ -26,11 +26,10 @@ export const fetchcourse = createAsyncThunk("fetchcourse", async (id) => {
 
 //delete course
 
-export const deletecourse = createAsyncThunk("deletecourse", async (id) => {
+export const deletecourse = createAsyncThunk("deletecourse", async (id, {dispatch}) => {
   try {
     const response = await axios.delete("http://localhost:5000/courses/" + id);
-  
-
+    dispatch(fetchCourses());
     return response.data;
   } catch (error) {
     console.error("Error deleting course:", error);
@@ -48,17 +47,24 @@ export const courseAdded = (course) => ({
   payload: course,
 });
 
-export const updatecourse = createAsyncThunk("updatecourse", async (body,id) => {
-  const response = await axios.patch(
-    "http://localhost:5000/courses/" + id,
-    body
-  );
-  console.log(response.data, " this is updated data");
-  return response.data;
-});
+export const updateCourse = createAsyncThunk(
+  "updateCourse",
+  async (args, { dispatch }) => {
+    const { id, body } = args;
+    try {
+      const response = await axios.patch(
+        "http://localhost:5000/courses/" + id,
+        body
+      );
 
-
-
+      dispatch(fetchcourse(id));
+      return response.data;
+    } catch (error) {
+      console.error("Error deleting course:", error);
+      throw error;
+    }
+  }
+);
 
 export const courseAddFailed = (error) => ({
   type: COURSE_ADD_FAILED,
@@ -66,9 +72,8 @@ export const courseAddFailed = (error) => ({
 });
 export const sendcourse = createAsyncThunk("addcourse", async (body) => {
   const response = await axios.post("http://localhost:5000/courses", body);
-  console.log(response.data," this is course data");
+  console.log(response.data, " this is course data");
   return response.data;
-  
 });
 
 export const coursesSlice = createSlice({
@@ -91,12 +96,6 @@ export const coursesSlice = createSlice({
       state.course = action.payload;
     });
     builder.addCase(sendcourse.fulfilled, (state, action) => {
-      state.course = action.payload;
-    });
-    builder.addCase(deletecourse.fulfilled, (state, action) => {
-   state.course = action.payload;
-    });
-    builder.addCase(updatecourse.fulfilled, (state, action) => {
       state.course = action.payload;
     });
   },

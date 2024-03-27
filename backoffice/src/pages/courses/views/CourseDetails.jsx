@@ -1,13 +1,15 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchcourse } from "../../../store/courses";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Accordion from "react-bootstrap/Accordion";
+import video1 from "../../../assets/videos/html css botstrap.mp4";
+import Card from "react-bootstrap/Card";
 
 export default function CourseDetails() {
   const { id } = useParams();
   const course = useSelector((state) => state.coursesSlice.course);
-  console.log(course,"this is course");
+  console.log(course, "this is course");
   // console.log(course?.Lesson, "those are lessons");
   const dispatch = useDispatch();
   useEffect(() => {
@@ -16,28 +18,87 @@ export default function CourseDetails() {
 
   return (
     <div>
-      <h1>{course?.tile}</h1>
-      <div className="d-flex justify-content-center py-4">
-        <img src={course?.imageURL} alt="" style={{ width: "40rem" }} />
+      <div className="d-flex">
+        <p className="px-5 py-4" style={{ fontSize: "2rem" }}>
+          {course?.title}
+        </p>
+        <p className=" py-4" style={{ fontSize: "2rem", color: "#42b1bc" }}>
+          |
+        </p>
+        <p
+          className=" py-4"
+          style={{
+            fontSize: "2rem",
+            color: "#42b1bc",
+            fontFamily: "Brittany Signature",
+          }}
+        >
+          BY SFECTORIA
+        </p>
       </div>
-<h1></h1>
-      <Accordion className="w-75 d-flex justify-content-center">
-        <Accordion.Item eventKey="0">
-          <Accordion.Header>Accordion Item #1</Accordion.Header>
-          <Accordion.Body>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </Accordion.Body>
-        </Accordion.Item>
-      </Accordion>
+
+      <div className="d-flex justify-content-center ">
+        <video
+          id="bannerVideo"
+          autoPlay
+          muted
+          loop
+          style={{ width: "100%", height: "40rem" }}
+          className="px-5"
+        >
+          <source src={video1} type="video/mp4" />
+        </video>
+
+        {/* <div>
+          <video src={video1} autoplay="true" />
+        </div> */}
+      </div>
+      <p className="px-5 py-4">Description: {course?.description}</p>
+      {/* <h1
+        className="text-center py-5"
+        style={{
+          fontFamily: "Brittany Signature",
+          fontSize: "4rem",
+          color: "#42b1bc",
+        }}
+      >
+        Lessons
+      </h1> */}
+
       {course?.Lesson.map((lesson) => (
-        <div style={{ width: "20rem" }}>
-          <p className="text-center">{lesson.title}</p>
+        <div className="px-3">
+          <Accordion className=" d-flex justify-content-center">
+            <Accordion.Item eventKey="0" className="w-100">
+              <Accordion.Header>{lesson.title}</Accordion.Header>
+              <Accordion.Body>
+                <div className="d-flex justify-content-center">
+                  <img
+                    src={lesson.imageURL}
+                    alt=""
+                    style={{ width: "50rem", height: "25rem" }}
+                  />
+                </div>
+                <Card style={{ width: "21rem", height: "28rem" }}>
+                  <Card.Img
+                    variant="top"
+                    src=""
+                    style={{ height: "11rem" }}
+                    className="thumb-img"
+                  />
+                  <Card.Body>
+                    <Card.Title style={{ width: "18rem", height: "4rem" }}>
+                      Video
+                    </Card.Title>
+                    <Card.Text style={{ width: "18rem", height: "7rem" }}>
+                      hh
+                    </Card.Text>
+                   
+                  </Card.Body>
+                </Card>
+              </Accordion.Body>
+            </Accordion.Item>
+          </Accordion>
+          <p className="text-center"></p>
         </div>
       ))}
     </div>

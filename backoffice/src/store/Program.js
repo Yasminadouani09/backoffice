@@ -35,17 +35,30 @@ export const programAddFailed = (error) => ({
   payload: error,
 });
 
-export const addProgram = (programData) => async (dispatch) => {
-  try {
-    const response = await axios.post(
-      "http://localhost:5000/programs",
-      programData
-    );
-    dispatch(programAdded(response.data));
-  } catch (error) {
-    dispatch(programAddFailed(error.message));
+export const sendprogram = createAsyncThunk("addprogram", async (body) => {
+  const response = await axios.post("http://localhost:5000/programs", body);
+  console.log(response.data, " this is prohgram data");
+  return response.data;
+});
+
+export const updateProgram = createAsyncThunk(
+  "updateProgram",
+  async (args, { dispatch }) => {
+    const { id, body } = args;
+    try {
+      const response = await axios.patch(
+        "http://localhost:5000/programs/" + id,
+        body
+      );
+
+      dispatch(fetchprogram(id));
+      return response.data;
+    } catch (error) {
+      console.error("Error updating program:", error);
+      throw error;
+    }
   }
-};
+);
 
 export const deleteprogram = createAsyncThunk(
   "deleteprogram",
@@ -82,12 +95,9 @@ export const ProgramSlice = createSlice({
     builder.addCase(fetchprogram.fulfilled, (state, action) => {
       state.program = action.payload;
     });
-    // builder.addCase(deleteprogram.fulfilled, (state, action) => {
-    //   state.programs.items = action.payload;
-    // });
-    //  builder.addCase(addProgram.fulfilled, (state, action) => {
-    //    state.program = action.payload;
-    //  });
+     builder.addCase(sendprogram.fulfilled, (state, action) => {
+       state.program = action.payload;
+     });
   },
 });
 // console.log(counterSlice.actions);

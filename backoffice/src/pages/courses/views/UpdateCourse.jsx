@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
@@ -11,7 +11,7 @@ import { FaInstagram } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa";
 import { SiDiscord } from "react-icons/si";
 import { useDispatch } from "react-redux";
-import { updatecourse } from "../../../store/courses";
+import { updateCourse } from "../../../store/courses";
 
 export default function UpdateCourse() {
     const [updatedcourse, setUpdatedcourse] = useState({});
@@ -25,8 +25,18 @@ export default function UpdateCourse() {
       const { name, value } = e.target;
       setUpdatedcourse({ ...updatedcourse, [name]: name === "price" ? +value : value });
     };
-    console.log (updatedcourse)
-
+  console.log(updatedcourse)
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(updateCourse({ body: updatedcourse, id: +id })).then((res) => {
+      if (!res.error) navigate("/courses");
+      else alert("you should fill the form");
+    });
+  };
+ useEffect(() => {
+   window.scrollTo(0, 0);
+ }, []);
   return (
     <div>
       <section style={{ backgroundColor: "#eee" }}>
@@ -55,14 +65,7 @@ export default function UpdateCourse() {
                     <Button
                       style={{ width: "7rem" }}
                       variant="warning"
-                      onClick={() => {
-                        dispatch(updatecourse(updatedcourse, id)).then(
-                          (res) => {
-                            console.log(res.data);
-                            if (!res.error) navigate("/courses/:id");
-                          }
-                        );
-                      }}
+                      onClick={handleSubmit}
                     >
                       Save
                     </Button>
