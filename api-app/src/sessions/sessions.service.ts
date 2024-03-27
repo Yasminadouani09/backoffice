@@ -12,7 +12,11 @@ export class SessionsService {
   }
 
   findAll() {
-    return this.prisma.session.findMany();
+    return this.prisma.session.findMany({
+      include: {
+        program: { include: { ProgramCourse: { include: { course: true } } } },
+      },
+    });
   }
 
   findOne(id: number) {
@@ -27,6 +31,6 @@ export class SessionsService {
   }
 
   remove(id: number) {
-     return this.prisma.session.delete({ where: { id } });
+    return this.prisma.session.delete({ where: { id } });
   }
 }
