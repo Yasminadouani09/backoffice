@@ -3,11 +3,12 @@ import React, { useState } from 'react'
 import team from "../../assets/team.jpg";
 import Form from "react-bootstrap/Form";
 import logo from "../../assets/logo (1).png";
-import login from '../../assets/4794658.jpg'
+import loginImg from '../../assets/4794658.jpg'
 import Header from "../../layout/Header";
 import Footer from "../../layout/Footer";
 import { useSelector, useDispatch } from "react-redux";
 import "../../css/auth.css";
+import { login } from '../../store/auth';
 
 export default function Login() {
 
@@ -29,7 +30,7 @@ export default function Login() {
             <Form
               onSubmit={(e) => {
                 e.preventDefault();
-                dispatch(login({ email, password }));
+                dispatch(login({ email , password }));
               }}
             >
               <div>
@@ -108,7 +109,7 @@ export default function Login() {
           </div>
         </div>
         <div className="px-5">
-          <img src={login} alt="" style={{ width: "35rem" }} id="imglogin" />
+          <img src={loginImg} alt="" style={{ width: "35rem" }} id="imglogin" />
         </div>
       </div>
       <Footer />

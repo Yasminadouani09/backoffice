@@ -14,15 +14,15 @@ datasource db {
 }
 
 model User {
-  id         Int     @id @default(autoincrement())
-  firstName  String
-  lastName   String
-  email      String  @unique
-  password   String
-  phone      Int?
-  address    String?
-  role       String
- 
+  id        Int     @id @default(autoincrement())
+  image     String  @db.LongText
+  firstName String
+  lastName  String
+  email     String  @unique
+  password  String
+  phone     Int?
+  address   String?
+  role      String
 }
 
 model Teacher {
@@ -49,7 +49,7 @@ model Course {
 model ProgramCourse {
   id        Int      @id @default(autoincrement())
   programId Int
-  program   Program? @relation(fields: [programId], references: [id],onDelete: Cascade)
+  program   Program? @relation(fields: [programId], references: [id], onDelete: Cascade)
   courseId  Int
   course    Course?  @relation(fields: [courseId], references: [id], onDelete: Cascade)
 }
@@ -66,13 +66,20 @@ model Program {
 }
 
 model Session {
-  id          Int      @id @default(autoincrement())
+  id          Int     @id @default(autoincrement())
   title       String
-  description String?  @db.LongText
+  description String? @db.LongText
   duration    String
-  imageURL    String   @db.LongText
+  imageURL    String  @db.LongText
   programId   Int
-  program     Program? @relation(fields: [programId], references: [id],onDelete: Cascade)
+  program     Program @relation(fields: [programId], references: [id], onDelete: Cascade)
+  Weeks       Weeks[]
+}
+
+model Weeks {
+  id        Int      @id @default(autoincrement())
+  sessionId Int
+  session   Session? @relation(fields: [sessionId], references: [id], onDelete: Cascade)
 }
 
 model Lesson {
@@ -87,9 +94,9 @@ model LessonContent {
   id Int @id @default(autoincrement())
 
   typeContentId Int
-  typeContent   typeContent? @relation(fields: [typeContentId], references: [id],onDelete: Cascade)
+  typeContent   typeContent? @relation(fields: [typeContentId], references: [id], onDelete: Cascade)
   lessonId      Int
-  lesson        Lesson?      @relation(fields: [lessonId], references: [id],onDelete: Cascade)
+  lesson        Lesson?      @relation(fields: [lessonId], references: [id], onDelete: Cascade)
 }
 
 model typeContent {

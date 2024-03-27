@@ -14,9 +14,11 @@ import {
   MDBBtn,
   MDBInputGroup,
 } from "mdb-react-ui-kit";
+import { useSelector } from "react-redux";
+import Button from "react-bootstrap/esm/Button";
 
 function NavBar({ isOpen, setIsOpen }) {
-  // const { user } = useContext(UserContext);
+  const user = useSelector((store) => store.auth.me);
   const navigate = useNavigate();
   return (
     <div
@@ -71,13 +73,17 @@ function NavBar({ isOpen, setIsOpen }) {
         </div>
         {/* <p className="m-0">Welcome {user.firstName} ✨</p> */}
         <Link to="/profile">
-          {/* <img
-            src={user.src}
+          <img
+            src={user.image}
             alt=""
             className="rounded-circle"
             style={{ width: 50, height: 50, objectFit: "cover" }}
-          /> */}
+          />
         </Link>
+        <Button  onClick={()=> {
+          localStorage.removeItem("token")
+          window.location.pathname="/"
+        }}> logout </Button>
       </div>
     </div>
   );

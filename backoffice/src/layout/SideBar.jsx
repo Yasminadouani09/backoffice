@@ -66,7 +66,12 @@ function SideBar({ setIsOpen }) {
         <Link style={{ all: "unset",  width: "100%"  }} to="/programs">
         <li className="px-2 py-2">Program</li>
          </Link>
-        <li className="px-2 py-2">Session</li>
+        <li className="px-2 py-2">
+        <Link style={{ all: "unset",  width: "100%"  }} to="/sessions" >
+           Sessions
+          </Link>
+          
+          </li>
 
         <li className="px-2 py-2">
          <Link style={{ all: "unset",  width: "100%"  }} to="users">
