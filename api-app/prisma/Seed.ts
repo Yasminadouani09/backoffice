@@ -5,6 +5,7 @@ import { dataTeachers } from './TEACHERS';
 import {SessionData} from './SessionData';
 import { dataUser } from './Userdata';
 import {LessonData} from './lesson'
+import  * as bcrypt from 'bcrypt'
 
 
 // initialize Prisma Client
@@ -25,8 +26,17 @@ async function main() {
     data: SessionData,
   });
 
+const usersdatahush=await  Promise.all(dataUser.map (async(dto )=> {
+  const {password,...rest}=dto
+  const salt= await bcrypt.genSalt()
+  const hashedPassword=await bcrypt.hash(password, salt)
+  // This action adds a new user
+  return (
+    {password:hashedPassword,...rest}
+  ) 
+} ))
   const users = await prisma.user.createMany({
-    data: dataUser ,
+    data: usersdatahush
   });
   const lessons = await prisma.lesson.createMany({
     data: LessonData  ,

@@ -1,42 +1,44 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { deletecourse, fetchCourses } from "../../../store/courses";
+// import { deletesession} from "../../../store/courses";
 import Card from "react-bootstrap/Card";
 
 import { Link, NavLink, useNavigate } from "react-router-dom";
 // import PopUp from "./PopUp";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import { fetchSessions } from "../../../store/sessions";
 
 export default function CourseList() {
-  const courses = useSelector((state) => state.coursesSlice.courses.items);
+  const sessions = useSelector((state) => state.sessionsSlice.sessions.items);
   const  [modalShow, setModalShow] = useState(false);
-  const [deletedId,setDeletedId]=useState("")
+//   const [deletedId,setDeletedId]=useState("")
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchCourses());
+    dispatch(fetchSessions());
   }, [dispatch]);
 
 
-  const deleteCourse=(id)=>{
-    dispatch(deletecourse(id));
-    window.location.reload();
-}
+//   const deleteCourse=(id)=>{
+//     dispatch(deletecourse(id));
+//     window.location.reload();
+// }
 
 
   const navigate = useNavigate();
   return (
-    <div >
+    <div>
       <div className="px-5">
         <button className="btn btn-primary" onClick={() => navigate("add")}>
-          Add course
+          Add session
         </button>
       </div>
       <div className="d-flex flex-wrap justify-content-center py-5 gap-5 ">
-        {courses.map((card) => (
-          <Card style={{ width: "21rem", height: "28rem" }}>
+        {sessions.map((card) => (
+          <Card style={{ width: "54rem", height: "26rem" }}>
+            <Card.Title style={{ width: "18rem" }}>{card.title}</Card.Title>
             <Card.Img
               variant="top"
               src={card.imageURL}
@@ -44,8 +46,8 @@ export default function CourseList() {
               className="thumb-img"
             />
             <Card.Body>
-              <Card.Title style={{ width: "18rem" }}>{card.title}</Card.Title>
-              <Card.Text style={{ width: "18rem" }}>
+            <Card.Title style={{ width: "18rem" }}>{card.duration}</Card.Title>
+              <Card.Text style={{ width: "46rem" }}>
                 {card.description}
               </Card.Text>
               <div className="d-flex gap-3">
@@ -69,7 +71,7 @@ export default function CourseList() {
                   className="btn btn-danger"
                   onClick={() => {
                     setModalShow(true);
-                    setDeletedId(card.id);
+                    // setDeletedId(card.id);
                   }}
                 >
                   Delete
@@ -88,11 +90,11 @@ export default function CourseList() {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Delete course
+            Delete session
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p>Are you sure you want to delete this course ?</p>
+          <p>Are you sure you want to delete this session ?</p>
         </Modal.Body>
         <div className="d-flex justify-content-center gap-2 py-3">
           <Button onClick={() => setModalShow(false)}>Cancle</Button>
@@ -100,7 +102,7 @@ export default function CourseList() {
           <Button
             className="btn btn-danger"
             onClick={() => {
-              deleteCourse(deletedId);
+            //   deleteSession(deletedId);
               setModalShow(false);
             }}
           >

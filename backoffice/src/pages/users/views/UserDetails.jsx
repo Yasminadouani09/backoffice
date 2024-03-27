@@ -16,7 +16,7 @@ useEffect(() => {
     <div className="d-flex justify-content-center py-4">
 
 {[  
-        'Success',
+     
         'Dark',
       ].map((variant, idx) => (
         <Toast
@@ -30,11 +30,12 @@ useEffect(() => {
               className="rounded me-2"
               alt=""
             />
-            <strong className="me-auto">{user?.firstName}</strong>
-            <small>11 mins ago</small>
+            <strong className="me-auto">{user?.firstName} {user?.lastName}</strong>
+            <small>{user?.role}</small>
           </Toast.Header>
           <Toast.Body className={variant === 'Dark' && 'text-white'}>
-            Hello, world! This is a toast message.
+          {user?.email}
+
           </Toast.Body>
         </Toast>
       ))}

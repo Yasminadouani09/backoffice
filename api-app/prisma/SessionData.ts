@@ -17,6 +17,16 @@ export const SessionData = [
       'https://www.shutterstock.com/image-illustration/web-development-coding-concept-banner-260nw-1955634814.jpg',
     programId: 4,
   },
+
+  {
+    title: 'FronTower online 2024',
+    description:
+      'Explore cutting-edge front-end development in our 2024 online session, focusing on React.js, HTML, CSS, Bootstrap, jQuery, and React Native. Led by experts, master building dynamic interfaces and engaging web and mobile apps through hands-on projects.',
+    duration: '14 weeks',
+    imageURL:
+      'https://media.geeksforgeeks.org/wp-content/cdn-uploads/20201111215809/How-to-Become-a-Front-End-Developer-in-2020.png',
+    programId: 2,
+  },
   {
     title: 'FronTower on site 2024',
     description:

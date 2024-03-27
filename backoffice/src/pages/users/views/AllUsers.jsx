@@ -5,7 +5,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import React, { useEffect, useMemo, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {DataGrid} from '@mui/x-data-grid';
-import {Box, Typography} from '@mui/material';
+import {Box, Avatar, Typography} from '@mui/material';
 import Stack from '@mui/material/Stack';
 import Button from 'react-bootstrap/Button';
 import Modal from "react-bootstrap/Modal";
@@ -27,6 +27,7 @@ export default function AllUsers() {
     window.location.reload();
 }
   const columns = useMemo(()=>[
+    {field: 'photoURL', headerName:'Avatar', width:30, renderCell : (params)=> <Avatar src={params.row.image}/>, sortable : false, filterable : false,},
     {field: 'id', headerName:'Id', width:30},
     {field: 'firstName', headerName:'FirstName', width:90},
     {field: 'lastName', headerName:'LastName', width:90},

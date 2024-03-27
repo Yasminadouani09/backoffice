@@ -1,17 +1,19 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { axiosGetWithHeaders } from "../helpers/axiosWithHeaders";
+
 
 export const login = createAsyncThunk("login", async (args, { dispatch }) => {
   const response = await axios.post(
-    "http://localhost:5000/auth",
+    "http://localhost:5000/auth/login",
     args
   );
   localStorage.setItem("token", response.data);
   dispatch(getMe());
 });
 export const getMe = createAsyncThunk("getMe", async () => {
-  const response = await axios.get("http://localhost:5000/auth/me");
-  return console.log(response.data);
+  const response = await axiosGetWithHeaders('auth/me')
+  return response.data; 
 });
 
 export const authSlice = createSlice({
