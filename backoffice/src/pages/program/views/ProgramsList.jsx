@@ -136,7 +136,7 @@ export default function ProgramsList() {
       </div>
       <div className="d-flex flex-wrap justify-content-center py-5 gap-5 ">
         {programs.map((card) => (
-          <Card style={{ width: "21rem", height: "28rem" }}>
+          <Card style={{ width: "21rem", height: "34rem" }}>
             <Card.Img
               variant="top"
               src={card.imageURL}
@@ -144,15 +144,24 @@ export default function ProgramsList() {
               className="thumb-img"
             />
             <Card.Body>
-              <Card.Title style={{ width: "18rem" }}>{card.title}</Card.Title>
-              <Card.Text style={{ width: "18rem" }}>
+              <Card.Title style={{ width: "18rem", height: "5rem" }}>
+                {card.title}
+              </Card.Title>
+              <Card.Text style={{ width: "18rem", height: "11rem" }}>
                 {card.description}
               </Card.Text>
-              <div className="d-flex gap-3">
+              <div className="d-flex flex-wrap gap-3">
                 <Link to={`${card.id}`}>
                   <button className="btn btn-primary">See more</button>
                 </Link>
-                <button className="btn btn-warning">Update</button>
+                <button
+                  className="btn btn-warning"
+                  onClick={() => {
+                    navigate(`update/${card.id}`);
+                  }}
+                >
+                  Update
+                </button>
                 <button
                   className="btn btn-danger"
                   onClick={() => {

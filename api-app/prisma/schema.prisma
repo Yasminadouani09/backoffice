@@ -58,7 +58,7 @@ model Program {
   id            Int             @id @default(autoincrement())
   title         String
   description   String?         @db.LongText
-  duration      String
+  duration      String?
   imageURL      String          @db.LongText
   price         Float
   Session       Session[]
@@ -85,6 +85,7 @@ model Weeks {
 model Lesson {
   id            Int             @id @default(autoincrement())
   title         String
+  imageURL      String          @db.LongText
   courseId      Int
   course        Course?         @relation(fields: [courseId], references: [id], onDelete: Cascade)
   LessonContent LessonContent[]

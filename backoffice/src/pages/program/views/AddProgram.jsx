@@ -1,132 +1,106 @@
+
 import React, { useState } from 'react'
-import ProgressBar from "react-bootstrap/ProgressBar";
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import addcourse from "../../../assets/open-book_7907682.png";
+import { sendprogram } from '../../../store/Program';
+import FormGroup from "react-bootstrap/esm/FormGroup";
 import Form from "react-bootstrap/Form";
-import Card from "react-bootstrap/Card";
-import { useNavigate } from "react-router-dom";
-import { useDispatch , useSelector } from 'react-redux';
-import { addProgram } from '../../../store/Program';
 
 export default function AddProgram() {
-const  AddProgramForm = () => {
-  const navigate = useNavigate(); 
-   const dispatch = useDispatch();
-   const [formData, setFormData] = useState({
-
-    title:'',     
-    description:'' ,
-    duration:'',
-    imageURL:'',    
-    price:'',
-   });
+  const [program, setprogram] = useState({});
+  console.log(program);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [programid, setProgramid] = useState(null);
+  console.log(programid);
    const handleChange = (e) => {
      const { name, value } = e.target;
-     setFormData({ ...formData, [e.target.name]: e.target.value });
+     setprogram({ ...program, [name]: name === "price" ? +value : value });
    };
 
-   
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(addProgram(formData));
-  };
   return (
     <div>
-      <div className="px-5 py-3">
-        <ProgressBar now={0} />
-        <div className="py-5">
-          <Card className="py-3">
-            <Form className="py-3 px-4">
-              <Form.Group className="mb-3" controlId="formBasicEmail">
-                <h3 className="text-warning">Add a new program</h3>
-                <Form.Label className="py-3 ">program cover</Form.Label>
-                {/* <div className="d-flex justify-content-center"> */}
-                {/* <Card style={{ width: "50rem", height: "20rem" }}>
-                    <div className="d-flex justify-content-center">
-                      <Form.Control
-                        className="w-25 "
-                        type="image"
-                        style={{ top: "50%" }}
-                        src="https://auphonic.com/media/blog/resumable_upload.png"
-                        placeholder="please enter the program name"
-                        onClick={() => {
-                          document.getElementById("myfile").click();
-                        }}
-                      />
-                    </div>
-                    <Form.Control
-                      className="w-75"
-                      type="file"
-                      id="myfile"
-                      style={{ display: "none" }}
-                      placeholder="please enter the program name"
-                    />
-                  </Card> */}
-                {/* </div>
-                <div className="py-3">
-                  <button className="btn btn-outline-primary"> Upload</button>
-                </div> */}
+      <div className="d-flex justify-content-center">
+        <div className="px-5 " style={{ width: "70rem" }}>
+          <div className="card " style={{ height: "33rem" }}>
+            <div className=" d-flex">
+              <div
+                className="w-50 d-flex flex-column gap-5 mt-5 flex-wrap justify-content-center align-items-center"
+                style={{ height: "27rem" }}
+              >
+                <img src={addcourse} alt="" style={{ width: "17rem" }} />
+                <div className="d-flex px-5 gap-4">
+                  <div>
+                    <button className="btn btn-primary">back</button>
+                  </div>
+                  <div>
+                    <button
+                      className="btn btn-primary"
+                      type="submit"
+                      onClick={(programid) => {
+                        dispatch(sendprogram(program)).then((res) => {
+                          setProgramid(program.id);
+                          if (!res.error) navigate(-1);
+                        });
+                      }}
+                    >
+                      next
+                    </button>
+                  </div>
+                </div>
+              </div>
 
-                <Form.Control onSubmit={handleSubmit}
-                  className="w-75"
-                  type="text"
-                  name="title"
-                  value={formData.title}
-                  placeholder="please enter the program image"
-                  onChange={handleChange}
-                />
-                <Form.Label className="py-1 ">program name</Form.Label>
-                <Form.Control
-                  className="w-75"
-                  type="text"
-                  placeholder="please enter the program name"
-                  onChange={handleChange}
-                />
-                <Form.Label className="py-3 ">program description</Form.Label>
-                <Form.Control
-                  className="w-75"
-                  style={{ height: "5rem" }}
-                  type="text"
-                  placeholder="please enter the program description"
-                  onChange={handleChange}
-                />
-                <Form.Label className="py-1 ">Price</Form.Label>
-                <Form.Control
-                  className="w-75"
-                  type="number"
-                  min={0}
-                  pl
-                  onChange={handleChange}
-                />
-                <Form.Label className="py-3 ">program duration</Form.Label>
-                <Form.Control
-                  className="w-75"
-                  type="text"
-                  placeholder="please enter the program duration"
-                  onChange={handleChange}
-                />
-              </Form.Group>
-            </Form>
-            <div className="d-flex justify-content-center gap-4">
-              <button
-                style={{ width: "9rem" }}
-                className="btn btn-outline-primary"
-                // onClick={() => {
-                //   dispatch(sendprogram(program)).then((res) => {
-                //     if (!res.error) navigate(-1);
-                //   });
-                // }}
-              >
-                Back
-              </button>
-              <button
-                style={{ width: "9rem" }}
-                className="btn btn-outline-primary"
-              >
-                Next
-              </button>
+              <div className="w-50 py-3">
+                <h1 style={{ color: "#00184b" }}>Add New Course</h1>
+
+                <div className="py-2">
+                  <Form>
+                    <FormGroup className="mb-3" controlId="formBasicEmail">
+                      <Form.Label>image link</Form.Label>
+                      <input
+                        className="w-75 form-control"
+                        type="text"
+                        placeholder="please enter the image link"
+                        name="imageURL"
+                        onChange={handleChange}
+                      />
+                      <Form.Label>Course title</Form.Label>
+                      <input
+                        className="w-75 form-control"
+                        type="text"
+                        placeholder="please enter the course title"
+                        name="title"
+                        onChange={handleChange}
+                      />
+                      <Form.Label className="py-3 ">
+                        Course description
+                      </Form.Label>
+                      <input
+                        className="w-75 form-control"
+                        style={{ height: "5rem" }}
+                        type="text"
+                        placeholder="please enter the Course description"
+                        name="description"
+                        onChange={handleChange}
+                      />
+                      <Form.Label className="py-1 ">Price</Form.Label>
+                      <input
+                        className="w-75 form-control"
+                        type="number"
+                        min={0}
+                        onChange={handleChange}
+                        name="price"
+                        placeholder="please enter the course name"
+                      />
+                    </FormGroup>
+                  </Form>
+                </div>
+              </div>
             </div>
-          </Card>
+          </div>
         </div>
       </div>
     </div>
   );
-}}
+}

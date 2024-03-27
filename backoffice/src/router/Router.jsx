@@ -37,6 +37,7 @@ import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 
 import UpdateCourse from "../pages/courses/views/UpdateCourse";
+import UpdateProgram from "../pages/program/views/UpdateProgram";
 
 export const UserContext = createContext();
 
@@ -68,16 +69,6 @@ console.log(user,"this is user")
       )}
      
 
-
-               
-              
-             
-
-
-
-               
-         
-    
       <DndProvider backend={HTML5Backend}>
         <BrowserRouter>
           <Routes>
@@ -101,6 +92,7 @@ console.log(user,"this is user")
                     <Route index element={<ProgramsList />} />
                     <Route path="add" element={<AddProgram />} />
                     <Route path=":id" element={<ProgramDetails />} />
+                    <Route path="update/:id" element={<UpdateProgram />} />
                   </Route>
 
                   <Route path="sessions" element={<Session />}>
@@ -110,14 +102,13 @@ console.log(user,"this is user")
                   </Route>
 
                   <Route path="users" element={<Users />}>
-                   <Route index element={<AllUsers />} />
-                   <Route path="adduser" element={<AddUser />} />
-                   <Route path="userdetails/:id" element={<UserDetails />} />
+                    <Route index element={<AllUsers />} />
+                    <Route path="adduser" element={<AddUser />} />
+                    <Route path="userdetails/:id" element={<UserDetails />} />
 
-                   <Route path="edituser/:id" element={<EditUser />} />
-                   <Route path="student" element={<Student />} />
-                </Route>
-
+                    <Route path="edituser/:id" element={<EditUser />} />
+                    <Route path="student" element={<Student />} />
+                  </Route>
                 </Route>
               ) : (
                 <Route path="/" element={<Auth />}>
