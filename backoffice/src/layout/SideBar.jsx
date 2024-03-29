@@ -49,7 +49,10 @@ function SideBar({ setIsOpen }) {
       <ul className="px-5 py-4" style={{ fontWeight: "50px" }}>
         <li className="px-2 py-2">
           <button
-            style={{ all: "unset",  width: "100%" }}
+            style={{
+              all: "unset",
+              width: "100%",
+            }}
             onClick={() => {
               navigate("/");
               // changeColor();
@@ -59,25 +62,23 @@ function SideBar({ setIsOpen }) {
           </button>
         </li>
         <li className="px-2 py-2">
-          <Link style={{ all: "unset",  width: "100%"  }} to="/courses" >
+          <Link style={{ all: "unset", width: "100%" }} to="/courses">
             Courses
           </Link>
         </li>
-        <Link style={{ all: "unset",  width: "100%"  }} to="/programs">
-        <li className="px-2 py-2">Program</li>
-         </Link>
+        <Link style={{ all: "unset", width: "100%" }} to="/programs">
+          <li className="px-2 py-2">Program</li>
+        </Link>
         <li className="px-2 py-2">
-        <Link style={{ all: "unset",  width: "100%"  }} to="/sessions" >
-           Sessions
+          <Link style={{ all: "unset", width: "100%" }} to="/sessions">
+            Sessions
           </Link>
-          
-          </li>
+        </li>
 
         <li className="px-2 py-2">
-         <Link style={{ all: "unset",  width: "100%"  }} to="users">
-        All users
-         </Link>
-            
+          <Link style={{ all: "unset", width: "100%" }} to="users">
+            All users
+          </Link>
         </li>
       </ul>
     </div>
