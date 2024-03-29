@@ -50,6 +50,19 @@ export default function AddUser() {
               <p class="text- text-center">SFECTORIAN ✌️</p>
               <Form>
                   <FormGroup className="mb-3" controlId="formBasicEmail">
+                  <Form.Label>Image</Form.Label>
+                    <p class="text-muted mb-0">
+                      <input
+                        type="text"
+                        name='image'
+                        placeholder="avatar"
+                        onChange={handleChange}
+                        
+                      />
+                    </p>
+                 
+               
+                <hr />
                     <Form.Label>First Name</Form.Label>
                     <p class="text-muted mb-0">
                       <input
