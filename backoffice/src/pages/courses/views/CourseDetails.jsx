@@ -41,8 +41,8 @@ export default function CourseDetails() {
         <video
           id="bannerVideo"
           autoPlay
-          muted
           loop
+          muted
           style={{ width: "100%", height: "40rem" }}
           className="px-5"
         >
@@ -78,7 +78,7 @@ export default function CourseDetails() {
                     style={{ width: "50rem", height: "25rem" }}
                   />
                 </div>
-                <Card style={{ width: "21rem", height: "28rem" }}>
+                <Card style={{ width: "19rem", height: "15rem" }}>
                   <Card.Img
                     variant="top"
                     src=""

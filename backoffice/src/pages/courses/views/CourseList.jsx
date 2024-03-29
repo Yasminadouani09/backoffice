@@ -30,12 +30,12 @@ export default function CourseList() {
   const navigate = useNavigate();
   return (
     <div >
-      <div className="px-5">
+      <div className="p-5">
         <button className="btn btn-primary" onClick={() => navigate("add")}>
           Add course
         </button>
       </div>
-      <div className="d-flex flex-wrap justify-content-center py-5 gap-5 ">
+      <div className="d-flex flex-wrap justify-content-center py-3 gap-5 ">
         {courses.map((card) => (
           <Card style={{ width: "21rem", height: "28rem" }}>
             <Card.Img

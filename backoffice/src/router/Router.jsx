@@ -80,7 +80,7 @@ console.log(user,"this is user")
                     <Route index element={<CourseList />} />
                     <Route path="add" element={<AddCourse />} />
                     <Route path="details/:id" element={<CourseDetails />} />
-                    <Route path="lesson" element={<LessonsList />} />
+                    <Route path=":courseId/lesson" element={<LessonsList />} />
                     <Route path="update/:id" element={<UpdateCourse />} />
                     <Route path="add" element={<AddLessons />} />
                   </Route>

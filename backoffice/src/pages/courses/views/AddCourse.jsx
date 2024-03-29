@@ -7,16 +7,15 @@ import bg from "../../../assets/bg.jpg";
 import addcourse from "../../../assets/open-book_7907682.png";
 import FormGroup from "react-bootstrap/esm/FormGroup";
 import { Button } from "bootstrap";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { sendcourse } from "../../../store/courses";
 
 export default function AddCourse() {
   const [course, setcourse] = useState({});
+  const coursecreated = useSelector((state) => state.coursesSlice.course);
+  console.log(coursecreated, "course created")
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  console.log(course.id, "this is the course id")
-  const [courseid, setCourseid] = useState(null)
-  console.log(courseid)
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -54,12 +53,10 @@ export default function AddCourse() {
                     type="submit"
                     
                     
-                    onClick={(courseid) => {
+                    onClick={() => {
                       dispatch(sendcourse(course)).then((res) => {
-                        setCourseid(course.id)
-                        if (!res.error) (
-                          navigate(-1)
-                        ) 
+                        console.log(res, "response")
+                        if (!res.error) navigate(`/courses/${res.payload.id}/lesson`); 
                       });
                     }}
                   >
